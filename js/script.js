@@ -40,20 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------------------
     // 2. THEME HANDLING (Auto / Light / Dark)
     // -------------------------------------------------------------------------
-    const themeToggleBtn = document.getElementById('theme-toggle');
+    const toggleCheckbox = document.getElementById('checkbox'); // The new input
     const root = document.documentElement;
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
 
     // States: 'auto' (null) | 'light' | 'dark'
     // Default on refresh: Auto (null)
-    // Toggle Cycle: 
-    //   - If currently Auto(Dark) -> Click -> Light
-    //   - If currently Auto(Light) -> Click -> Dark
-    //   - If currently Dark -> Click -> Light
-    //   - If currently Light -> Click -> Dark
-    // effectively: Always toggle to the *other* visual state.
 
-    let preferredMode = null; // Default to Auto on page load
+    let preferredMode = null;
 
     // Remove any persisted keys from previous versions to ensure clean slate
     localStorage.removeItem('theme');
@@ -78,11 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Update Assets
         updateThemeAssets(visualTheme);
 
-        // 3. Update Toggle Icon
-        // Always show the icon for the "Opposite" or "Current" state?
-        // Standard: If I am in Dark mode, show Sun (to switch to Light).
-        //           If I am in Light mode, show Moon (to switch to Dark).
-        updateToggleIcon(visualTheme);
+        // 3. Sync Checkbox with Visual State
+        if (toggleCheckbox) {
+            toggleCheckbox.checked = (visualTheme === 'dark');
+        }
     }
 
     function updateThemeAssets(visualTheme) {
@@ -101,44 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function updateToggleIcon(visualTheme) {
-        const svg = themeToggleBtn.querySelector('svg');
-        const modeLabel = visualTheme === 'light' ? 'Light' : 'Dark';
-
-        themeToggleBtn.setAttribute('aria-label', `Current theme: ${modeLabel}. Click to switch.`);
-        themeToggleBtn.title = `Current Mode: ${modeLabel} (System: ${mq.matches ? 'Dark' : 'Light'})`;
-
-        if (visualTheme === 'light') {
-            // Unconditionally show Moon (to switch to Dark)
-            svg.innerHTML = `
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            `;
-        } else {
-            // Unconditionally show Sun (to switch to Light)
-            svg.innerHTML = `
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            `;
-        }
+    // Toggle logic: Watch the checkbox change
+    if (toggleCheckbox) {
+        toggleCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                preferredMode = 'dark';
+            } else {
+                preferredMode = 'light';
+            }
+            applyTheme();
+        });
     }
-
-    // Toggle logic: Simple 2-state flip based on CURRENT VISUAL state
-    themeToggleBtn.addEventListener('click', () => {
-        const currentVisual = getPreferredTheme();
-        if (currentVisual === 'light') {
-            preferredMode = 'dark';
-        } else {
-            preferredMode = 'light';
-        }
-        applyTheme();
-    });
 
     // Listen for System Changes
     mq.addEventListener('change', () => {
