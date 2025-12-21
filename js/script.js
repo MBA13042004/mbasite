@@ -1,19 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------------------
-    // 0. LOADER HANDLING
+    // 0. CUSTOM LOGO PRELOADER
     // -------------------------------------------------------------------------
-    // Use window 'load' for full assets, or run small timeout for effect
-    const loader = document.getElementById('loader-wrapper');
-    if (loader) {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
         window.addEventListener('load', () => {
-            // Slight delay to ensure animation is seen at least briefly
+            // Small delay to ensure smooth transition
             setTimeout(() => {
-                loader.classList.add('loaded');
-                // Optional: Remove from DOM after transition to free memory
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500); // Match CSS transition duration
-            }, 1500); // Increased view time
+                preloader.classList.add('loaded');
+                document.body.classList.add('loaded'); // Enable scroll if needed
+            }, 600);
         });
     }
 
@@ -194,19 +190,45 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.hidden-scroll').forEach(el => observer.observe(el));
 
     // -------------------------------------------------------------------------
-    // 5. SMOOTH SCROLL
+    // 5. FAKE PAGE TRANSITION (Loader on Nav Click)
     // -------------------------------------------------------------------------
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#' || targetId === '') return;
             const targetElement = document.querySelector(targetId);
+
             if (targetElement) {
-                const headerHeight = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-                window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                e.preventDefault();
+
+                // Trigger Preloader
+                if (preloader) {
+                    preloader.classList.remove('loaded');
+                    document.body.classList.remove('loaded');
+
+                    setTimeout(() => {
+                        // Scroll logic
+                        const headerHeight = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                        window.scrollTo({ top: offsetPosition, behavior: "auto" }); // Auto because loader hides jump
+
+                        // Hide Preloader
+                        preloader.classList.add('loaded');
+                        document.body.classList.add('loaded');
+
+                        // Update Hash (Optional)
+                        history.pushState(null, null, targetId);
+
+                    }, 800); // 800ms "Loading" time
+                } else {
+                    // Fallback if no preloader
+                    const headerHeight = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                }
             }
         });
     });
