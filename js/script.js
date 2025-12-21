@@ -264,4 +264,43 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update on resize
         window.addEventListener('resize', resetIndicator);
     }
+
+    // -------------------------------------------------------------------------
+    // 7. SCROLL PROGRESS BUTTON
+    // -------------------------------------------------------------------------
+    const progressPath = document.querySelector('.progress-wrap path');
+    const progressWrap = document.querySelector('.progress-wrap');
+
+    if (progressPath && progressWrap) {
+        const pathLength = progressPath.getTotalLength();
+
+        // Initialize Stroke
+        progressPath.style.transition = 'none';
+        progressPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
+        progressPath.style.strokeDashoffset = pathLength;
+        progressPath.getBoundingClientRect(); // Trigger layout
+        progressPath.style.transition = 'stroke-dashoffset 10ms linear';
+
+        const updateProgress = () => {
+            const scroll = window.pageYOffset;
+            const height = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = pathLength - (scroll * pathLength / height);
+            progressPath.style.strokeDashoffset = progress;
+
+            // Show/Hide Button
+            if (scroll > 50) {
+                progressWrap.classList.add('active-progress');
+            } else {
+                progressWrap.classList.remove('active-progress');
+            }
+        };
+
+        window.addEventListener('scroll', updateProgress);
+
+        // Click to Scroll Top
+        progressWrap.addEventListener('click', (event) => {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });
