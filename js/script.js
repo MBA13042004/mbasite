@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------------------
     (function (_0x1a2b) {
         // ALLOWED DOMAINS
-        const _0x3c4d = ['mbasite.netlify.app', 'localhost', '127.0.0.1'];
+        const _0x3c4d = ['mbasite.netlify.app', 'mbasite.vercel.app', 'localhost', '127.0.0.1'];
         const _0x5e6f = window.location.hostname;
 
         // 1. DOMAIN LOCK (Kill Switch)
@@ -325,16 +325,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // We assume CSS hid the body. Now we show it.
         document.documentElement.style.display = 'block';
 
-        // 3. DEBUGGER TRAP (Anti-DevTools)
-        setInterval(function () {
-            const _0x1k2l = new Date();
-            debugger; // BREAKPOINT LOOP
-            const _0x3m4n = new Date();
-            if (_0x3m4n - _0x1k2l > 100) {
-                // Console is likely open
-                document.body.innerHTML = '<h1>Don\'t look at the code!</h1>';
-            }
-        }, 1000);
+        // 3. DEBUGGER TRAP (Anti-DevTools) - DISABLED ON LOCALHOST
+        const _0xisLocal = _0x5e6f.includes('localhost') || _0x5e6f.includes('127.0.0.1');
+        if (!_0xisLocal) {
+            setInterval(function () {
+                const _0x1k2l = new Date();
+                debugger; // BREAKPOINT LOOP
+                const _0x3m4n = new Date();
+                if (_0x3m4n - _0x1k2l > 100) {
+                    // Console is likely open
+                    document.body.innerHTML = '<h1>Don\'t look at the code!</h1>';
+                }
+            }, 1000);
+        }
 
         // 4. DISABLE INTERACTION
         document.addEventListener('contextmenu', e => e.preventDefault());
