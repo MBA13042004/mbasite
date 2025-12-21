@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 setTimeout(() => {
                     window.location.href = targetUrl;
-                }, 800); // 800ms "Loading" time
+                }, 50); // 50ms "Loading" time
             } else {
                 window.location.href = targetUrl;
             }

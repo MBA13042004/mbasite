@@ -1447,7 +1447,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.1s ease, visibility 0.1s ease;
 }
 
 #preloader.loaded {
