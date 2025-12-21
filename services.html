@@ -5,8 +5,8 @@
     <meta name="color-scheme" content="light dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Portfolio de Mosab Ben Abdellah - Étudiant Ingénieur Informatique spécialisé en Développement Web & DevOps.">
-    <title>Mosab Ben Abdellah | Ingénieur Informatique</title>
+        content="Services & Expertise de Mosab Ben Abdellah - Développement Web, DevOps, Industrialisation.">
+    <title>Services | Mosab Ben Abdellah</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,12 +36,10 @@
         </div>
     </div>
 
-    <a href="#about" class="skip-link" style="display:none;">Skip to content</a>
-
     <!-- HEADER & NAV -->
     <header>
         <div class="container nav-container">
-            <a href="#top" class="brand" aria-label="Retour en haut">
+            <a href="index.html" class="brand" aria-label="Retour à l'accueil">
                 <img id="brandLogo" src="assets/logo-mba-dark.png" alt="Logo MBA" class="brand-logo">
             </a>
 
@@ -49,7 +47,7 @@
                 <ul class="nav-links">
                     <li><a href="about.html" class="nav-link">À propos</a></li>
                     <li><a href="skills.html" class="nav-link">Compétences</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="services.html" class="nav-link active">Services</a></li>
                     <li><a href="projects.html" class="nav-link">Projets</a></li>
                     <li><a href="experience.html" class="nav-link">Expérience</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
@@ -59,7 +57,6 @@
 
             <div class="header-actions">
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
-                    <!-- Icon handled by JS -->
                     <svg viewBox="0 0 24 24" fill="none" class="feather">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -94,61 +91,50 @@
     </div>
 
     <main>
-        <!-- HERO SECTION -->
-        <section id="top" class="hero hidden-scroll">
-            <div class="container hero-container">
-                <div class="hero-content-wrapper">
-                    <span class="hero-intro">Étudiant Ingénieur Informatique</span>
-                    <h1 class="hero-title">
-                        Construire le web de demain avec <span class="text-gradient">Qualité & Performance</span>
-                    </h1>
-                    <p class="hero-desc">
-                        Spécialisé en Développement Web, Industrialisation logicielle et DevOps.
-                        Je conçois des solutions robustes, du code propre au déploiement cloud automatisé.
-                    </p>
-                    <div class="hero-btns">
-                        <a href="projects.html" class="btn btn-primary">Voir mes projets</a>
-                        <a href="contact.html" class="btn btn-outline">Me contacter</a>
+        <!-- SERVICES SECTION -->
+        <section id="services" class="section-padding hidden-scroll" style="padding-top: 120px; min-height: 80vh;">
+            <div class="container">
+                <h2 class="section-title">Services & Expertise</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/services/service-web.svg" alt="Développement Web" class="service-icon-img"
+                                loading="lazy" decoding="async">
+                        </div>
+                        <h3>Développement Web</h3>
+                        <p>Création d'interfaces modernes et performantes (Front-end & Node/Express) respectant les
+                            standards du web.</p>
                     </div>
-
-                    <div class="credibility-line">
-                        <div class="credibility-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
-                            <span>Web Development</span>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/services/service-devops.svg" alt="CI/CD & DevOps" class="service-icon-img"
+                                loading="lazy" decoding="async">
                         </div>
-                        <div class="credibility-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="6" y1="3" x2="6" y2="15"></line>
-                                <circle cx="18" cy="6" r="3"></circle>
-                                <circle cx="6" cy="18" r="3"></circle>
-                                <path d="M18 9a9 9 0 0 1-9 9"></path>
-                            </svg>
-                            <span>CI/CD & DevOps</span>
-                        </div>
-                        <div class="credibility-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
-                            <span>Architecture</span>
-                        </div>
+                        <h3>CI/CD & DevOps</h3>
+                        <p>Mise en place de pipelines d'intégration continue et conteneurisation (Docker, GitHub
+                            Actions, Cloud).</p>
                     </div>
-                </div>
-
-                <div class="hero-visual">
-                    <div class="hero-img-blob">
-                        <img src="Img/profile_main.jpg" alt="Mosab Ben Abdellah" class="hero-img">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/services/service-dashboard.svg" alt="Dashboards & Automation"
+                                class="service-icon-img" loading="lazy" decoding="async">
+                        </div>
+                        <h3>Dashboards & Automation</h3>
+                        <p>Automatisation de processus métier et création de tableaux de bord décisionnels (Power BI,
+                            Power Apps).</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/services/service-industrialisation.svg" alt="Industrialisation"
+                                class="service-icon-img" loading="lazy" decoding="async">
+                        </div>
+                        <h3>Industrialisation</h3>
+                        <p>Documentation technique, mise en place de normes de qualité et standardisation des livrables.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <!-- FOOTER -->

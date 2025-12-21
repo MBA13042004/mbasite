@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="color-scheme" content="light dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Portfolio de Mosab Ben Abdellah - Étudiant Ingénieur Informatique spécialisé en Développement Web & DevOps.">
-    <title>Mosab Ben Abdellah | Ingénieur Informatique</title>
+    <meta name="description" content="Expérience Professionnelle de Mosab Ben Abdellah.">
+    <title>Expérience | Mosab Ben Abdellah</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,12 +35,10 @@
         </div>
     </div>
 
-    <a href="#about" class="skip-link" style="display:none;">Skip to content</a>
-
     <!-- HEADER & NAV -->
     <header>
         <div class="container nav-container">
-            <a href="#top" class="brand" aria-label="Retour en haut">
+            <a href="index.html" class="brand" aria-label="Retour à l'accueil">
                 <img id="brandLogo" src="assets/logo-mba-dark.png" alt="Logo MBA" class="brand-logo">
             </a>
 
@@ -51,7 +48,7 @@
                     <li><a href="skills.html" class="nav-link">Compétences</a></li>
                     <li><a href="services.html" class="nav-link">Services</a></li>
                     <li><a href="projects.html" class="nav-link">Projets</a></li>
-                    <li><a href="experience.html" class="nav-link">Expérience</a></li>
+                    <li><a href="experience.html" class="nav-link active">Expérience</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                     <span class="nav-indicator" aria-hidden="true"></span>
                 </ul>
@@ -59,7 +56,6 @@
 
             <div class="header-actions">
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
-                    <!-- Icon handled by JS -->
                     <svg viewBox="0 0 24 24" fill="none" class="feather">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -94,61 +90,47 @@
     </div>
 
     <main>
-        <!-- HERO SECTION -->
-        <section id="top" class="hero hidden-scroll">
-            <div class="container hero-container">
-                <div class="hero-content-wrapper">
-                    <span class="hero-intro">Étudiant Ingénieur Informatique</span>
-                    <h1 class="hero-title">
-                        Construire le web de demain avec <span class="text-gradient">Qualité & Performance</span>
-                    </h1>
-                    <p class="hero-desc">
-                        Spécialisé en Développement Web, Industrialisation logicielle et DevOps.
-                        Je conçois des solutions robustes, du code propre au déploiement cloud automatisé.
-                    </p>
-                    <div class="hero-btns">
-                        <a href="projects.html" class="btn btn-primary">Voir mes projets</a>
-                        <a href="contact.html" class="btn btn-outline">Me contacter</a>
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="section-padding hidden-scroll" style="padding-top: 120px; min-height: 80vh;">
+            <div class="container">
+                <h2>Parcours Professionnel</h2>
+                <div class="timeline">
+                    <!-- Exp 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Juil. 2024 — Sept. 2024</div>
+                        <h3 class="timeline-role">Ingénieur Stagiaire Amélioration Continue & Digitalisation</h3>
+                        <span class="timeline-company">YAZAKI MOROCCO S.A (Tanger)</span>
+                        <ul class="timeline-details">
+                            <li>Développement d'une application Power Apps pour la résolution de problèmes terrain.</li>
+                            <li>Intégration méthodologie TRIZ + reporting Power BI + stockage SharePoint.</li>
+                            <li>Test sur cas réels, analyse d'impact et itérations basées sur les retours utilisateurs.
+                            </li>
+                        </ul>
                     </div>
-
-                    <div class="credibility-line">
-                        <div class="credibility-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
-                            <span>Web Development</span>
-                        </div>
-                        <div class="credibility-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="6" y1="3" x2="6" y2="15"></line>
-                                <circle cx="18" cy="6" r="3"></circle>
-                                <circle cx="6" cy="18" r="3"></circle>
-                                <path d="M18 9a9 9 0 0 1-9 9"></path>
-                            </svg>
-                            <span>CI/CD & DevOps</span>
-                        </div>
-                        <div class="credibility-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
-                            <span>Architecture</span>
-                        </div>
+                    <!-- Exp 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Fév. 2025 — Juin 2025</div>
+                        <h3 class="timeline-role">Projet Académique : App Web d’Évaluation</h3>
+                        <span class="timeline-company">ENSA Tanger</span>
+                        <ul class="timeline-details">
+                            <li>Conception des modules d'évaluation, d'analyse et de reporting.</li>
+                            <li>Responsable CI/CD Backend : Dockerisation + GitHub Actions.</li>
+                            <li>Déploiement Cloud sur Railway et Azure, standardisation de l'infrastructure.</li>
+                        </ul>
                     </div>
-                </div>
-
-                <div class="hero-visual">
-                    <div class="hero-img-blob">
-                        <img src="Img/profile_main.jpg" alt="Mosab Ben Abdellah" class="hero-img">
+                    <!-- Exp 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Sept. 2024 — Aujourd’hui</div>
+                        <h3 class="timeline-role">Cycle Ingénieur Informatique</h3>
+                        <span class="timeline-company">ENSA Tanger</span>
+                        <ul class="timeline-details">
+                            <li>Acquisition de compétences approfondies en programmation et systèmes distribués.</li>
+                            <li>Architecture logicielle, algorithmique avancée et gestion de projet agile.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <!-- FOOTER -->

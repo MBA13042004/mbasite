@@ -192,43 +192,40 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------------------
     // 5. FAKE PAGE TRANSITION (Loader on Nav Click)
     // -------------------------------------------------------------------------
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // -------------------------------------------------------------------------
+    // 5. PAGE TRANSITION (Loader on Nav Click)
+    // -------------------------------------------------------------------------
+    // Select all links that are internal navigation
+    document.querySelectorAll('a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#' || targetId === '') return;
-            const targetElement = document.querySelector(targetId);
+            const targetUrl = this.getAttribute('href');
 
-            if (targetElement) {
-                e.preventDefault();
+            // checks to ignore:
+            // 1. Links starting with # (anchors)
+            // 2. Empty links
+            // 3. mailto, tel, javascript:
+            // 4. External links target="_blank"
+            if (!targetUrl ||
+                targetUrl.startsWith('#') ||
+                targetUrl.startsWith('mailto:') ||
+                targetUrl.startsWith('tel:') ||
+                targetUrl.startsWith('javascript:') ||
+                this.target === '_blank') {
+                return;
+            }
 
-                // Trigger Preloader
-                if (preloader) {
-                    preloader.classList.remove('loaded');
-                    document.body.classList.remove('loaded');
+            e.preventDefault();
 
-                    setTimeout(() => {
-                        // Scroll logic
-                        const headerHeight = 80;
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+            // Trigger Preloader
+            if (preloader) {
+                preloader.classList.remove('loaded');
+                document.body.classList.remove('loaded');
 
-                        window.scrollTo({ top: offsetPosition, behavior: "auto" }); // Auto because loader hides jump
-
-                        // Hide Preloader
-                        preloader.classList.add('loaded');
-                        document.body.classList.add('loaded');
-
-                        // Update Hash (Optional)
-                        history.pushState(null, null, targetId);
-
-                    }, 800); // 800ms "Loading" time
-                } else {
-                    // Fallback if no preloader
-                    const headerHeight = 80;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                }
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 800); // 800ms "Loading" time
+            } else {
+                window.location.href = targetUrl;
             }
         });
     });
