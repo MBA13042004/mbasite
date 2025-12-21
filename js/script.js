@@ -288,4 +288,67 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+    // -------------------------------------------------------------------------
+    // 8. SITE PROTECTION (Anti-Theft)
+    // -------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
+    // 8. SECURITY SYSTEM (Code: RED-1000)
+    // -------------------------------------------------------------------------
+    (function (_0x1a2b) {
+        // ALLOWED DOMAINS
+        const _0x3c4d = ['mbasite.netlify.app', 'localhost', '127.0.0.1'];
+        const _0x5e6f = window.location.hostname;
+
+        // 1. DOMAIN LOCK (Kill Switch)
+        let _0x7g8h = false;
+        for (let _0x9i0j of _0x3c4d) {
+            if (_0x5e6f.includes(_0x9i0j)) {
+                _0x7g8h = true;
+                break;
+            }
+        }
+
+        if (!_0x7g8h) {
+            // UNAUTHORIZED HOST DETECTED
+            let msg = '<h1>ACCESS DENIED 🛑</h1>';
+            if (_0x5e6f === '') {
+                msg += '<p><strong>Security Restriction:</strong> You are opening the file directly (file://).<br>To test your site securely, please use the Local Server.</p>';
+                msg += '<p>👉 Open this link instead: <a href="http://localhost:8080">http://localhost:8080</a></p>';
+            } else {
+                msg += '<p>Running on unauthorized domain: ' + _0x5e6f + '</p>';
+            }
+            document.documentElement.innerHTML = '<div style="font-family:sans-serif; text-align:center; padding-top:50px;">' + msg + '</div>';
+            throw new Error('Security Violation');
+        }
+
+        // 2. REVEAL CONTENT (only if safe)
+        // We assume CSS hid the body. Now we show it.
+        document.documentElement.style.display = 'block';
+
+        // 3. DEBUGGER TRAP (Anti-DevTools)
+        setInterval(function () {
+            const _0x1k2l = new Date();
+            debugger; // BREAKPOINT LOOP
+            const _0x3m4n = new Date();
+            if (_0x3m4n - _0x1k2l > 100) {
+                // Console is likely open
+                document.body.innerHTML = '<h1>Don\'t look at the code!</h1>';
+            }
+        }, 1000);
+
+        // 4. DISABLE INTERACTION
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey || e.keyCode == 123) { // 123 = F12
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 5. BANNER
+        console.clear();
+        console.log('%cSECURE MODE', 'color:green; font-size:20px; font-weight:bold;');
+
+    })();
 });
+
