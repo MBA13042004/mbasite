@@ -1,0 +1,522 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="light dark">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio de Mosab Ben Abdellah - Étudiant Ingénieur Informatique spécialisé en Développement Web & DevOps.">
+    <title>Mosab Ben Abdellah | Ingénieur Informatique</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo-mba-dark.png">
+</head>
+
+<body>
+    <!-- LOADER (Original Div-based) -->
+    <div id="loader-wrapper" class="loader-wrapper">
+        <div class="cradle">
+            <div class="bulb-container">
+                <div class="wire"></div>
+                <div class="bulb"></div>
+            </div>
+            <div class="bulb-container">
+                <div class="wire"></div>
+                <div class="bulb"></div>
+            </div>
+            <div class="bulb-container">
+                <div class="wire"></div>
+                <div class="bulb"></div>
+            </div>
+            <div class="bulb-container">
+                <div class="wire"></div>
+                <div class="bulb"></div>
+            </div>
+            <div class="bulb-container">
+                <div class="wire"></div>
+                <div class="bulb"></div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#about" class="skip-link" style="display:none;">Skip to content</a>
+
+    <!-- HEADER & NAV -->
+    <header>
+        <div class="container nav-container">
+            <a href="#top" class="brand" aria-label="Retour en haut">
+                <img id="brandLogo" src="assets/logo-mba-dark.png" alt="Logo MBA" class="brand-logo">
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about" class="nav-link">À propos</a></li>
+                    <li><a href="#skills" class="nav-link">Compétences</a></li>
+                    <li><a href="#projects" class="nav-link">Projets</a></li>
+                    <li><a href="#experience" class="nav-link">Expérience</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <div class="nav-indicator"></div>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                    <!-- Icon handled by JS -->
+                    <svg viewBox="0 0 24 24" fill="none" class="feather">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Burger -->
+            <button class="burger-menu" aria-label="Open Menu" aria-expanded="false">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-nav-overlay">
+        <a href="#about" class="nav-link">À propos</a>
+        <a href="#skills" class="nav-link">Compétences</a>
+        <a href="#projects" class="nav-link">Projets</a>
+        <a href="#experience" class="nav-link">Expérience</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="top" class="hero hidden-scroll">
+            <div class="container hero-container">
+                <div class="hero-content-wrapper">
+                    <span class="hero-intro">Étudiant Ingénieur Informatique</span>
+                    <h1 class="hero-title">
+                        Construire le web de demain avec <span class="text-gradient">Qualité & Performance</span>
+                    </h1>
+                    <p class="hero-desc">
+                        Spécialisé en Développement Web, Industrialisation logicielle et DevOps.
+                        Je conçois des solutions robustes, du code propre au déploiement cloud automatisé.
+                    </p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+                        <a href="#contact" class="btn btn-outline">Me contacter</a>
+                    </div>
+
+                    <div class="credibility-line">
+                        <div class="credibility-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                            <span>Web Development</span>
+                        </div>
+                        <div class="credibility-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                <circle cx="18" cy="6" r="3"></circle>
+                                <circle cx="6" cy="18" r="3"></circle>
+                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                            </svg>
+                            <span>CI/CD & DevOps</span>
+                        </div>
+                        <div class="credibility-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            <span>Architecture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-img-blob">
+                        <img src="Img/profile_main.jpg" alt="Mosab Ben Abdellah" class="hero-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section-padding hidden-scroll">
+            <div class="container">
+                <h2 class="section-title">À Propos</h2>
+                <div class="about-grid-single"> <!-- Changed class for single column layout -->
+                    <div class="about-text">
+                        <h3>L'alliance du Code et de l'Ops</h3>
+                        <p>
+                            Étudiant en cycle ingénieur informatique, je cultive une approche rigoureuse du
+                            développement, mêlant sens du produit, qualité de code et standardisation.
+                        </p>
+                        <p>
+                            Mes expériences, allant d'un stage chez <strong>Yazaki</strong> (optimisation Power Apps/BI)
+                            à des projets académiques complets (CI/CD, Docker, Cloud), m'ont permis de maîtriser la
+                            chaîne de valeur logicielle de bout en bout.
+                        </p>
+                        <p>
+                            Je cherche aujourd'hui une opportunité (stage ou projet) pour contribuer à des produits
+                            ambitieux, en apportant ma vision technique et mon engagement pour l'excellence
+                            opérationnelle.
+                        </p>
+
+                        <div class="highlights-list">
+                            <div class="highlight-item">CI/CD & Conteneurisation</div>
+                            <div class="highlight-item">Déploiement Cloud</div>
+                            <div class="highlight-item">Apps & Dashboards</div>
+                            <div class="highlight-item">Qualité Logicielle</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="section-padding hidden-scroll">
+            <div class="container">
+                <h2>Compétences Techniques</h2>
+                <div class="skills-grid">
+                    <!-- Cat 1 -->
+                    <div class="skill-card">
+                        <img class="skill-icon-img" src="assets/skills/web.svg" alt="Langages & Web">
+                        <h3>Langages & Web</h3>
+                        <div class="skill-tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">C/C++</span>
+                            <span class="tag">Java</span>
+                        </div>
+                    </div>
+                    <!-- Cat 2 -->
+                    <div class="skill-card">
+                        <img class="skill-icon-img" src="assets/skills/backend.svg" alt="Back-end">
+                        <h3>Back-end</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Express.js</span>
+                            <span class="tag">REST API</span>
+                        </div>
+                    </div>
+                    <!-- Cat 3 -->
+                    <div class="skill-card">
+                        <img class="skill-icon-img" src="assets/skills/data.svg" alt="Data & DB">
+                        <h3>Data & DB</h3>
+                        <div class="skill-tags">
+                            <span class="tag">SQL</span>
+                            <span class="tag">PL/SQL</span>
+                            <span class="tag">Relational DB</span>
+                        </div>
+                    </div>
+                    <!-- Cat 4 -->
+                    <div class="skill-card">
+                        <img class="skill-icon-img" src="assets/skills/devops.svg" alt="DevOps & Cloud">
+                        <h3>DevOps & Cloud</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Docker</span>
+                            <span class="tag">Docker Compose</span>
+                            <span class="tag">GitHub Actions</span>
+                            <span class="tag">Railway</span>
+                            <span class="tag">Azure</span>
+                        </div>
+                    </div>
+                    <!-- Cat 5 -->
+                    <div class="skill-card">
+                        <img class="skill-icon-img" src="assets/skills/power.svg" alt="Outils & Power Platform">
+                        <h3>Outils & Power Platform</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Power Apps</span>
+                            <span class="tag">SharePoint</span>
+                            <span class="tag">Office 365</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT SECTION -->
+        <section id="projects" class="section-padding hidden-scroll">
+            <div class="container">
+                <h2>Projets Réalisés</h2>
+                <div class="projects-grid">
+                    <!-- Projet 1 -->
+                    <article class="project-card">
+                        <div class="project-cover">
+                            <img class="project-cover-img" src="assets/projects/powerapps.svg" alt="Cover Power Apps"
+                                loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Application Résolution de Problèmes</h3>
+                            <p>Solution digitalisée pour le terrain chez Yazaki. Intégration complète TRIZ + Power BI +
+                                SharePoint pour analyse d'impact et suivi temps réel.</p>
+                            <a href="#" class="project-link">Voir détails <span aria-hidden="true">→</span></a>
+                            <div class="project-tags">
+                                <span class="tag">Power Apps</span>
+                                <span class="tag">Power BI</span>
+                                <span class="tag">SharePoint</span>
+                                <span class="tag">TRIZ</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projet 2 -->
+                    <article class="project-card">
+                        <div class="project-cover">
+                            <img class="project-cover-img" src="assets/projects/softskills.svg" alt="Cover Soft Skills"
+                                loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Web App Évaluation Soft Skills</h3>
+                            <p>Plateforme d'évaluation et reporting. Architecture conteneurisée avec pipeline CI/CD
+                                complet et déploiement cloud automatisé.</p>
+                            <a href="#" class="project-link">Voir sur GitHub <span aria-hidden="true">→</span></a>
+                            <div class="project-tags">
+                                <span class="tag">Docker</span>
+                                <span class="tag">GitHub Actions</span>
+                                <span class="tag">Railway</span>
+                                <span class="tag">Azure</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projet 3 (Placeholder) -->
+                    <article class="project-card">
+                        <div class="project-cover">
+                            <img class="project-cover-img" src="assets/projects/saas.svg" alt="Cover SaaS"
+                                loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Projet Personnel - À venir</h3>
+                            <p>Développement d'une solution SaaS pour l'automatisation de tâches administratives.</p>
+                            <a href="#" class="project-link">En cours...</a>
+                            <div class="project-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Node.js</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projet 4 (Placeholder) -->
+                    <article class="project-card">
+                        <div class="project-cover">
+                            <img class="project-cover-img" src="assets/projects/dashboard.svg" alt="Cover Dashboard"
+                                loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Dashboard / Data Analytics</h3>
+                            <p>Visualisation de données complexes avec focus sur la performance et l'UX.</p>
+                            <a href="#" class="project-link">En cours...</a>
+                            <div class="project-tags">
+                                <span class="tag">D3.js</span>
+                                <span class="tag">SQL</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="section-padding hidden-scroll">
+            <div class="container">
+                <h2>Parcours Professionnel</h2>
+                <div class="timeline">
+                    <!-- Exp 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Juil. 2024 — Sept. 2024</div>
+                        <h3 class="timeline-role">Ingénieur Stagiaire Amélioration Continue & Digitalisation</h3>
+                        <span class="timeline-company">YAZAKI MOROCCO S.A (Tanger)</span>
+                        <ul class="timeline-details">
+                            <li>Développement d'une application Power Apps pour la résolution de problèmes terrain.</li>
+                            <li>Intégration méthodologie TRIZ + reporting Power BI + stockage SharePoint.</li>
+                            <li>Test sur cas réels, analyse d'impact et itérations basées sur les retours utilisateurs.
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Exp 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Fév. 2025 — Juin 2025</div>
+                        <h3 class="timeline-role">Projet Académique : App Web d’Évaluation</h3>
+                        <span class="timeline-company">ENSA Tanger</span>
+                        <ul class="timeline-details">
+                            <li>Conception des modules d'évaluation, d'analyse et de reporting.</li>
+                            <li>Responsable CI/CD Backend : Dockerisation + GitHub Actions.</li>
+                            <li>Déploiement Cloud sur Railway et Azure, standardisation de l'infrastructure.</li>
+                        </ul>
+                    </div>
+                    <!-- Exp 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Sept. 2024 — Aujourd’hui</div>
+                        <h3 class="timeline-role">Cycle Ingénieur Informatique</h3>
+                        <span class="timeline-company">ENSA Tanger</span>
+                        <ul class="timeline-details">
+                            <li>Acquisition de compétences approfondies en programmation et systèmes distribués.</li>
+                            <li>Architecture logicielle, algorithmique avancée et gestion de projet agile.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="section-padding hidden-scroll">
+            <div class="container">
+                <h2>Services & Expertise</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/services/service-web.svg" alt="Développement Web" class="service-icon-img"
+                                loading="lazy" decoding="async">
+                        </div>
+                        <h3>Développement Web</h3>
+                        <p>Création d'interfaces modernes et performantes (Front-end & Node/Express) respectant les
+                            standards du web.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/services/service-devops.svg" alt="CI/CD & DevOps" class="service-icon-img"
+                                loading="lazy" decoding="async">
+                        </div>
+                        <h3>CI/CD & DevOps</h3>
+                        <p>Mise en place de pipelines d'intégration continue et conteneurisation (Docker, GitHub
+                            Actions, Cloud).</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/services/service-dashboard.svg" alt="Dashboards & Automation"
+                                class="service-icon-img" loading="lazy" decoding="async">
+                        </div>
+                        <h3>Dashboards & Automation</h3>
+                        <p>Automatisation de processus métier et création de tableaux de bord décisionnels (Power BI,
+                            Power Apps).</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/services/service-industrialisation.svg" alt="Industrialisation"
+                                class="service-icon-img" loading="lazy" decoding="async">
+                        </div>
+                        <h3>Industrialisation</h3>
+                        <p>Documentation technique, mise en place de normes de qualité et standardisation des livrables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAREER OBJECTIVE -->
+        <section id="objective" class="section-padding hidden-scroll">
+            <div class="container">
+                <div class="objective-card">
+                    <h2 style="margin-bottom: 1.5rem;">Objectif Professionnel</h2>
+                    <p class="objective-text">
+                        Mon ambition est de construire des applications utiles, robustes et parfaitement
+                        industrialisées.
+                        Je souhaite évoluer vers des responsabilités mêlant développement, DevOps et Data, en
+                        garantissant toujours la qualité et la scalabilité des solutions déployées.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section-padding hidden-scroll">
+            <div class="container">
+                <h2>Me Contacter</h2>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <p>N'hésitez pas à me contacter pour discuter de vos projets ou d'opportunités de collaboration.
+                        </p>
+
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <strong>Localisation</strong>
+                                <br>
+                                Tanger, Maroc
+                            </div>
+                        </div>
+
+                        <div class="contact-actions">
+                            <a class="icon-btn" id="gmailLink" href="#" aria-label="Envoyer un email" title="Email">
+                                <img src="assets/icons/gmail.svg" alt="" width="22" height="22" loading="lazy"
+                                    decoding="async">
+                            </a>
+
+                            <a class="icon-btn" id="waLink" href="#" target="_blank" rel="noopener noreferrer"
+                                aria-label="Discuter sur WhatsApp" title="WhatsApp">
+                                <img src="assets/icons/whatsapp.svg" alt="" width="22" height="22" loading="lazy"
+                                    decoding="async">
+                            </a>
+                        </div>
+
+                        <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                            <!-- Social Placeholders -->
+                            <a href="https://www.linkedin.com/in/mosab-ben-abdellah-b6b7052b9/" class="btn btn-outline"
+                                style="padding: 0.5rem 1rem;">LinkedIn</a>
+                            <a href="https://github.com/MBA13042004" class="btn btn-outline"
+                                style="padding: 0.5rem 1rem;">GitHub</a>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" action="#"
+                        onsubmit="event.preventDefault(); alert('Merci pour votre message ! (Simulation)');">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Votre nom"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="votre@email.com"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Votre message..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 Mosab Ben Abdellah. Tous droits réservés.</p>
+            <p style="font-size: 0.85rem; color: var(--text-light);">Designed & Built with ❤️ </p>
+            <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Retour en haut ↑</div>
+        </div>
+    </footer>
+
+    <!-- JS Script -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
