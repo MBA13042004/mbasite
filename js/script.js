@@ -40,41 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initContactLinks();
 
-    // -------------------------------------------------------------------------
-    // 1.1 NAVBAR INDICATOR (Sliding Light Beam)
-    // -------------------------------------------------------------------------
-    const navIndicator = document.querySelector('.nav-indicator');
-    const navLinksList = document.querySelectorAll('.nav-links li a');
-
-    function moveIndicator(el) {
-        if (!navIndicator || !el) return;
-
-        // Calculate position relative to the UL parent
-        // The .nav-links UL is relative, so offsetLeft gives position inside it
-        navIndicator.style.width = `${el.offsetWidth}px`;
-        navIndicator.style.left = `${el.offsetLeft}px`;
-        navIndicator.style.opacity = '1';
-    }
-
-    function resetIndicator() {
-        if (!navIndicator) return;
-        navIndicator.style.opacity = '0';
-        // Optional: Move back to active link if you want persistence
-        // const active = document.querySelector('.nav-link.active');
-        // if(active) moveIndicator(active);
-    }
-
-    navLinksList.forEach(link => {
-        link.addEventListener('mouseenter', (e) => {
-            moveIndicator(e.target);
-        });
-    });
-
-    // Hide when leaving the UL area
-    const navUl = document.querySelector('.nav-links');
-    if (navUl) {
-        navUl.addEventListener('mouseleave', resetIndicator);
-    }
 
     // -------------------------------------------------------------------------
     // 2. THEME HANDLING (Auto / Light / Dark)
@@ -245,4 +210,58 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // -------------------------------------------------------------------------
+    // 6. SLIDING NAVBAR INDICATOR (Modern Neon)
+    // -------------------------------------------------------------------------
+    const desktopNavList = document.querySelector('.nav-links');
+    const indicator = document.querySelector('.nav-indicator');
+    const desktopLinks = document.querySelectorAll('.nav-links .nav-link');
+
+    if (indicator && desktopNavList) {
+        function moveIndicator(element) {
+            // Get coordinates relative to the parent UL
+            const parentRect = desktopNavList.getBoundingClientRect();
+            const elRect = element.getBoundingClientRect();
+
+            const left = elRect.left - parentRect.left;
+            const width = elRect.width;
+
+            indicator.style.width = `${width}px`;
+            indicator.style.transform = `translateX(${left}px)`;
+            indicator.style.opacity = '1';
+        }
+
+        function resetIndicator() {
+            // Check for active link
+            const activeLink = document.querySelector('.nav-links .nav-link.active');
+            if (activeLink) {
+                moveIndicator(activeLink);
+            } else {
+                indicator.style.opacity = '0'; // Hide if no active link
+            }
+        }
+
+        // Initialize position on load
+        setTimeout(resetIndicator, 100);
+
+        desktopLinks.forEach(link => {
+            link.addEventListener('mouseenter', (e) => {
+                moveIndicator(e.target);
+            });
+
+            link.addEventListener('click', (e) => {
+                // Remove active from all
+                desktopLinks.forEach(l => l.classList.remove('active'));
+                // Add to clicked
+                e.target.classList.add('active');
+                moveIndicator(e.target);
+            });
+        });
+
+        desktopNavList.addEventListener('mouseleave', resetIndicator);
+
+        // Update on resize
+        window.addEventListener('resize', resetIndicator);
+    }
 });
