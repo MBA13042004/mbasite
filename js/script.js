@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------------------
     (function (_0x1a2b) {
         // ALLOWED DOMAINS
-        const _0x3c4d = ['mbasite.netlify.app', 'mbasite.vercel.app', 'localhost', '127.0.0.1'];
+        const _0x3c4d = ['mbasite.netlify.app', 'mbamysite.netlify.app', 'mbasite.vercel.app', 'localhost', '127.0.0.1'];
         const _0x5e6f = window.location.hostname;
 
         // 1. DOMAIN LOCK (Kill Switch)
