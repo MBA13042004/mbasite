@@ -107,13 +107,13 @@ const COMPONENTS = {
     </footer>
     
     <!-- SCROLL UP -->
-    <a href="#" class="scrollup" id="scroll-up">
-        <i class="fas fa-arrow-up scrollup-icon"></i>
-    </a>
-    <div class="progress-wrap">
+    <!-- Note: scrollup anchor is likely legacy, reusing progress-wrap logic -->
+    
+    <div class="progress-wrap" id="progressWrap">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
         </svg>
+        <i class="fa-solid fa-arrow-up progress-arrow"></i>
     </div>
     `
 };

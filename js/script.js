@@ -1,23 +1,29 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. PRELOADER
-    // 1. PRELOADER (Robust Removal)
+    // 1. PRELOADER (Robust Removal with Minimum Display Time)
     const preloader = document.getElementById('preloader');
+    const minDisplayTime = 500; // Minimum time in ms to show loader
+    const startTime = Date.now();
 
     const removePreloader = () => {
         if (preloader && preloader.style.display !== 'none') {
-            preloader.style.opacity = '0';
+            const elapsedTime = Date.now() - startTime;
+            const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+
             setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 500);
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500); // Fade out duration matches CSS transition usually
+            }, remainingTime);
         }
     };
 
     // Remove on window load (all assets loaded)
     window.addEventListener('load', removePreloader);
 
-    // Fallback timeout (2 second safety - faster load)
-    setTimeout(removePreloader, 2000);
+    // Fallback timeout (3 second safety - slightly longer to ensure min display)
+    setTimeout(removePreloader, 3000);
 
     // Set current year dynamically
     const yearSpan = document.getElementById('currentYear');
@@ -117,37 +123,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- SCROLL PROGRESS ---
+    // --- SCROLL PROGRESS (High Performance & Robust) ---
     const progressWrap = document.getElementById('progressWrap');
     if (progressWrap) {
-        const updateProgress = () => {
-            const scroll = window.pageYOffset || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (scroll / height) * 100;
+        const path = progressWrap.querySelector('path');
+        const pathLength = 307.919; // Radius 49px * 2 * PI
 
-            // Show/Hide button
-            if (scroll > 50) {
+        // 1. Setup Initial State (Start Empty)
+        if (path) {
+            path.style.transition = 'none';
+            path.style.strokeDasharray = `${pathLength}px ${pathLength}px`;
+            path.style.strokeDashoffset = `${pathLength}px`;
+            path.getBoundingClientRect(); // Force Reflow
+            path.style.transition = 'stroke-dashoffset 10ms linear';
+        }
+
+        let ticking = false;
+
+        const updateProgress = () => {
+            // Get Scroll Top (Cross-browser)
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+
+            // Get Scroll Height & Client Height (Cross-browser)
+            const scrollHeight = Math.max(
+                document.body.scrollHeight, document.documentElement.scrollHeight,
+                document.body.offsetHeight, document.documentElement.offsetHeight,
+                document.body.clientHeight, document.documentElement.clientHeight
+            );
+
+            const clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+            const scrollableHeight = scrollHeight - clientHeight;
+
+            // Calculate Progress (0.0 to 1.0) with Clamp
+            const progress = Math.max(0, Math.min(1, scrollTop / scrollableHeight));
+
+            // Calculate Offset: Empty (pathLength) -> Full (0)
+            const offset = pathLength - (pathLength * progress);
+
+            if (path) {
+                path.style.strokeDashoffset = `${offset}px`;
+            }
+
+            // Update Visibility (> 50px)
+            if (scrollTop > 50) {
                 progressWrap.classList.add('active-progress');
             } else {
                 progressWrap.classList.remove('active-progress');
             }
 
-            // Update Circle
-            const path = progressWrap.querySelector('path');
-            if (path) {
-                const pathLength = path.getTotalLength();
-                path.style.strokeDasharray = pathLength + ' ' + pathLength;
-                // Inverse formula: starts at pathLength (empty) and goes to 0 (full)
-                const offset = pathLength * (1 - scrolled / 100);
-                path.style.strokeDashoffset = offset;
-            }
-        }
+            ticking = false;
+        };
 
-        window.addEventListener('scroll', updateProgress);
+        const onScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateProgress);
+                ticking = true;
+            }
+        };
+
+        // Attach Listeners
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', updateProgress);
+
         progressWrap.addEventListener('click', (event) => {
             event.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // Initial Calculation
         updateProgress();
     }
 
