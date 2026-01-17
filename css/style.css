@@ -1572,6 +1572,20 @@ footer {
   justify-content: center;
   align-items: center;
   transition: opacity 0.1s ease, visibility 0.1s ease;
+
+  /* SAFETY: Force hide after 4s if JS fails */
+  animation: bg-fade-force 1s linear 4s forwards;
+  pointer-events: auto;
+  /* Block clicks initially */
+}
+
+/* Force removal animation */
+@keyframes bg-fade-force {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 #preloader.loaded {
