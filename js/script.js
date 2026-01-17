@@ -134,10 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Update Circle
             const path = progressWrap.querySelector('path');
-            const pathLength = path.getTotalLength();
-            path.style.strokeDasharray = pathLength + ' ' + pathLength;
-            const offset = pathLength - (scrolled * pathLength / 100);
-            path.style.strokeDashoffset = offset;
+            if (path) {
+                const pathLength = path.getTotalLength();
+                path.style.strokeDasharray = pathLength + ' ' + pathLength;
+                // Inverse formula: starts at pathLength (empty) and goes to 0 (full)
+                const offset = pathLength * (1 - scrolled / 100);
+                path.style.strokeDashoffset = offset;
+            }
         }
 
         window.addEventListener('scroll', updateProgress);
