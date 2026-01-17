@@ -1221,15 +1221,6 @@ footer {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  /* SAFETY: Force reveal after 3s if JS fails */
-  animation: content-safety 0.8s ease-out 3s forwards;
-}
-
-@keyframes content-safety {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .show-scroll {
@@ -1581,15 +1572,6 @@ footer {
   justify-content: center;
   align-items: center;
   transition: opacity 0.5s ease, visibility 0.5s ease;
-  animation: preloader-safety 0.5s ease 2.5s forwards;
-}
-
-@keyframes preloader-safety {
-  to {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
 }
 
 #preloader.loaded {
