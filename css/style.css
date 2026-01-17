@@ -1531,10 +1531,6 @@ footer {
   stroke: var(--primary);
   /* Progress color */
   stroke-width: 4;
-  stroke-dasharray: 307.919 307.919;
-  /* Circumference of circle (2 * PI * r, where r=49) */
-  stroke-dashoffset: 307.919;
-  /* Start with circle empty */
   transition: stroke-dashoffset 10ms linear;
 }
 
