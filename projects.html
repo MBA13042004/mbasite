@@ -16,13 +16,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- SECURITY: Hide Content by Default -->
-    <style>
-        html {
-            display: none;
-        }
-    </style>
-
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -84,7 +79,7 @@
         <a href="about.html" class="nav-link">À propos</a>
         <a href="skills.html" class="nav-link">Compétences</a>
         <a href="services.html" class="nav-link">Services</a>
-        <a href="projects.html" class="nav-link">Projets</a>
+        <a href="projects.html" class="nav-link active">Projets</a>
         <a href="experience.html" class="nav-link">Expérience</a>
         <a href="contact.html" class="nav-link">Contact</a>
     </div>
@@ -93,81 +88,123 @@
         <!-- PROJECT SECTION -->
         <section id="projects" class="section-padding hidden-scroll" style="padding-top: 120px; min-height: 80vh;">
             <div class="container">
-                <h2>Projets Réalisés</h2>
+                <h2 style="margin-bottom: 3rem;">Projets Réalisés</h2>
                 <div class="projects-grid">
-                    <!-- Projet 1 -->
+
+                    <!-- Projet : Dirhamy (New Highlight) -->
                     <article class="project-card">
                         <div class="project-cover">
-                            <img class="project-cover-img" src="assets/projects/powerapps.svg" alt="Cover Power Apps"
-                                loading="lazy" decoding="async">
+                            <img src="assets/projects/dirhamy.png" alt="Dirhamy Project" class="project-cover-img">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Application Résolution de Problèmes</h3>
-                            <p>Solution digitalisée pour le terrain chez Yazaki. Intégration complète TRIZ + Power BI +
-                                SharePoint pour analyse d'impact et suivi temps réel.</p>
-                            <a href="#" class="project-link">Voir détails <span aria-hidden="true">→</span></a>
+                            <h3 class="project-title">Dirhamy - Suivi de Dépenses & IA</h3>
+                            <p style="margin-bottom: 1rem;">
+                                Application de gestion financière intelligente. Architecture <strong>Cloud AWS</strong>
+                                avec pipeline CI/CD complet.
+                            </p>
+
+                            <div
+                                style="background: rgba(0,0,0,0.03); padding: 0.8rem; border-radius: 8px; border-left: 3px solid var(--primary); margin-bottom: 1.2rem; font-size: 0.85rem;">
+                                <strong style="display:block; margin-bottom:0.4rem;">Infrastructure DevOps (AWS)
+                                    :</strong>
+                                <ul style="margin: 0; padding-left: 0; list-style-type: none;">
+                                    <li style="margin-bottom:0.3rem;"><i class="fas fa-code-branch"
+                                            style="color:var(--primary); width:20px;"></i><strong>PR</strong> &rarr;
+                                        Tests Auto</li>
+                                    <li style="margin-bottom:0.3rem;"><i class="fas fa-cube"
+                                            style="color:var(--primary); width:20px;"></i><strong>Dev</strong> &rarr;
+                                        Build & Push Docker</li>
+                                    <li><i class="fas fa-rocket"
+                                            style="color:var(--primary); width:20px;"></i><strong>Main</strong> &rarr;
+                                        Deploy EC2 (Prod)</li>
+                                </ul>
+                            </div>
+
                             <div class="project-tags">
-                                <span class="tag">Power Apps</span>
-                                <span class="tag">Power BI</span>
-                                <span class="tag">SharePoint</span>
-                                <span class="tag">TRIZ</span>
+                                <span class="tag">AWS (EC2)</span>
+                                <span class="tag">Docker/CI-CD</span>
+                                <span class="tag">Node.js/React</span>
+                            </div>
+
+                            <div class="project-links" style="margin-top: 1.5rem; display: flex; gap: 0.8rem;">
+                                <a href="https://dirhamy.com/" target="_blank" class="btn btn-primary"
+                                    style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                                    <i class="fas fa-external-link-alt"></i> Site Live
+                                </a>
+                                <a href="https://github.com/MYH-Projet/dirhamy" target="_blank" class="btn btn-outline"
+                                    style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Projet 1 : MDGS Migration -->
+                    <article class="project-card">
+                        <div class="project-cover">
+                            <!-- Placeholder image or reuse existing -->
+                            <div
+                                style="width:100%; height:170px; background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%); display:flex; align-items:center; justify-content:center;">
+                                <i class="fas fa-server" style="font-size: 3rem; color: white; opacity:0.8;"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Migration MDGS - Plateforme Industrielle</h3>
+                            <p>Migration complète d'une solution Power Apps vers une architecture web robuste pour la
+                                gestion industrielle.</p>
+                            <div class="project-tags">
+                                <span class="tag">Node.js</span>
+                                <span class="tag">Express.js</span>
+                                <span class="tag">PostgreSQL</span>
+                                <span class="tag">Conception SI</span>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Projet 2 -->
+                    <!-- Projet 2 : Soft Skills App -->
                     <article class="project-card">
                         <div class="project-cover">
-                            <img class="project-cover-img" src="assets/projects/softskills.svg" alt="Cover Soft Skills"
-                                loading="lazy" decoding="async">
+                            <img src="assets/projects/growtrack.png" alt="Grow Track Logo" class="project-cover-img">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Web App Évaluation Soft Skills</h3>
-                            <p>Plateforme d'évaluation et reporting. Architecture conteneurisée avec pipeline CI/CD
-                                complet et déploiement cloud automatisé.</p>
-                            <a href="#" class="project-link">Voir sur GitHub <span aria-hidden="true">→</span></a>
+                            <h3 class="project-title">App Évaluation Soft Skills</h3>
+                            <p>Plateforme d'évaluation et reporting. Architecture CI/CD automatisée avec
+                                conteneurisation.</p>
                             <div class="project-tags">
                                 <span class="tag">Docker</span>
                                 <span class="tag">GitHub Actions</span>
-                                <span class="tag">Railway</span>
-                                <span class="tag">Azure</span>
+                                <span class="tag">Cloud (Railway/AWS)</span>
+                            </div>
+
+                            <div class="project-links" style="margin-top: 1.5rem;">
+                                <a href="https://github.com/jawad3213/GrowTrackiiiiyyyy" target="_blank"
+                                    class="btn btn-outline"
+                                    style="display:block; text-align:center; padding: 0.5rem 1rem;">
+                                    <i class="fab fa-github"></i> Voir le Repository
+                                </a>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Projet 3 (Placeholder) -->
+                    <!-- Projet 3 : Power Apps -->
                     <article class="project-card">
                         <div class="project-cover">
-                            <img class="project-cover-img" src="assets/projects/saas.svg" alt="Cover SaaS"
-                                loading="lazy" decoding="async">
+                            <div
+                                style="width:100%; height:170px; background: linear-gradient(135deg, #7c3aed 0%, #2dd4bf 100%); display:flex; align-items:center; justify-content:center;">
+                                <i class="fas fa-mobile-alt" style="font-size: 3rem; color: white; opacity:0.8;"></i>
+                            </div>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Projet Personnel - À venir</h3>
-                            <p>Développement d'une solution SaaS pour l'automatisation de tâches administratives.</p>
-                            <a href="#" class="project-link">En cours...</a>
+                            <h3 class="project-title">Digitalisation Processus Qualité</h3>
+                            <p>Application mobile pour la digitalisation des processus terrain et remontée d'incidents.
+                            </p>
                             <div class="project-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">Node.js</span>
+                                <span class="tag">Power Apps</span>
+                                <span class="tag">SharePoint</span>
+                                <span class="tag">Validation UX</span>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Projet 4 (Placeholder) -->
-                    <article class="project-card">
-                        <div class="project-cover">
-                            <img class="project-cover-img" src="assets/projects/dashboard.svg" alt="Cover Dashboard"
-                                loading="lazy" decoding="async">
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Dashboard / Data Analytics</h3>
-                            <p>Visualisation de données complexes avec focus sur la performance et l'UX.</p>
-                            <a href="#" class="project-link">En cours...</a>
-                            <div class="project-tags">
-                                <span class="tag">D3.js</span>
-                                <span class="tag">SQL</span>
-                            </div>
-                        </div>
-                    </article>
                 </div>
             </div>
         </section>
@@ -188,8 +225,10 @@
         <i class="fa-solid fa-arrow-up progress-arrow"></i>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="js/background.js"></script>
     <!-- JS Script -->
-    <script src="js/script.obfuscated.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

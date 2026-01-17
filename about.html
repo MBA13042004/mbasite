@@ -17,13 +17,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- SECURITY: Hide Content by Default -->
-    <style>
-        html {
-            display: none;
-        }
-    </style>
-
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -82,7 +77,7 @@
 
     <!-- MOBILE MENU OVERLAY -->
     <div class="mobile-nav-overlay">
-        <a href="about.html" class="nav-link">À propos</a>
+        <a href="about.html" class="nav-link active">À propos</a>
         <a href="skills.html" class="nav-link">Compétences</a>
         <a href="services.html" class="nav-link">Services</a>
         <a href="projects.html" class="nav-link">Projets</a>
@@ -94,46 +89,51 @@
         <!-- ABOUT SECTION -->
         <section id="about" class="section-padding hidden-scroll" style="padding-top: 120px; min-height: 80vh;">
             <div class="container">
-                <h2 class="section-title">À Propos</h2>
+                <h2 class="section-title">Profil & Parcours</h2>
                 <div class="about-grid-single">
                     <div class="about-text">
-                        <h3>L'alliance du Code et de l'Ops</h3>
+                        <h3>Ingénieur Logiciel & Systèmes d'Information</h3>
                         <p>
-                            Étudiant en cycle ingénieur informatique, je cultive une approche rigoureuse du
-                            développement, mêlant sens du produit, qualité de code et standardisation.
+                            Étudiant en cycle ingénieur Informatique à l'<strong>ENSAT</strong>, je suis passionné par
+                            le développement logiciel et l'optimisation des systèmes d'information.
                         </p>
                         <p>
-                            Mes expériences, allant d'un stage chez <strong>Yazaki</strong> (optimisation Power Apps/BI)
-                            à des projets académiques complets (CI/CD, Docker, Cloud), m'ont permis de maîtriser la
-                            chaîne de valeur logicielle de bout en bout.
-                        </p>
-                        <p>
-                            Je cherche aujourd'hui une opportunité (stage ou projet) pour contribuer à des produits
-                            ambitieux, en apportant ma vision technique et mon engagement pour l'excellence
-                            opérationnelle.
+                            Candidat au Master Informatique – parcours <strong>DOSI (UBO)</strong>, je cherche à
+                            approfondir mes compétences en ingénierie logicielle et pratiques outillées (Qualité,
+                            Intégration Continue, Industrialisation).
+                            Mon objectif est de concevoir des solutions pérennes, de la modélisation à la mise en
+                            production.
                         </p>
 
                         <div class="highlights-list">
-                            <div class="highlight-item">CI/CD & Conteneurisation</div>
-                            <div class="highlight-item">Déploiement Cloud</div>
-                            <div class="highlight-item">Apps & Dashboards</div>
+                            <div class="highlight-item">Développement Web</div>
+                            <div class="highlight-item">DevOps & CI/CD</div>
                             <div class="highlight-item">Qualité Logicielle</div>
+                            <div class="highlight-item">Systèmes d'Information</div>
+                        </div>
+
+                        <!-- Languages -->
+                        <div style="margin-top: 3rem; text-align: center;">
+                            <h4 style="font-size: 1.2rem; margin-bottom: 1rem;">Langues</h4>
+                            <div class="highlights-list" style="margin-top: 1rem;">
+                                <div class="highlight-item" style="border-color: var(--primary);">Français (C1)</div>
+                                <div class="highlight-item" style="border-color: var(--accent);">Anglais (B2)</div>
+                                <div class="highlight-item">Arabe (Natif)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CAREER OBJECTIVE (Good fit for About page) -->
+        <!-- CAREER OBJECTIVE -->
         <section id="objective" class="section-padding hidden-scroll">
             <div class="container">
-                <div class="objective-card">
-                    <h2 style="margin-bottom: 1.5rem;">Objectif Professionnel</h2>
+                <div class="objective-card" style="text-align:center; max-width:800px; margin:0 auto;">
+                    <h2 style="margin-bottom: 1.5rem;">Centres d'Intérêt</h2>
                     <p class="objective-text">
-                        Mon ambition est de construire des applications utiles, robustes et parfaitement
-                        industrialisées.
-                        Je souhaite évoluer vers des responsabilités mêlant développement, DevOps et Data, en
-                        garantissant toujours la qualité et la scalabilité des solutions déployées.
+                        En dehors du code, je pratique l'<strong>Aïkido</strong> et l'écriture de poésie en arabe, des
+                        disciplines qui renforcent ma rigueur et ma créativité.
                     </p>
                 </div>
             </div>
@@ -155,8 +155,10 @@
         <i class="fa-solid fa-arrow-up progress-arrow"></i>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="js/background.js"></script>
     <!-- JS Script -->
-    <script src="js/script.obfuscated.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

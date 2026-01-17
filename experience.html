@@ -16,13 +16,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- SECURITY: Hide Content by Default -->
-    <style>
-        html {
-            display: none;
-        }
-    </style>
-
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -85,7 +80,7 @@
         <a href="skills.html" class="nav-link">Compétences</a>
         <a href="services.html" class="nav-link">Services</a>
         <a href="projects.html" class="nav-link">Projets</a>
-        <a href="experience.html" class="nav-link">Expérience</a>
+        <a href="experience.html" class="nav-link active">Expérience</a>
         <a href="contact.html" class="nav-link">Contact</a>
     </div>
 
@@ -93,39 +88,70 @@
         <!-- EXPERIENCE SECTION -->
         <section id="experience" class="section-padding hidden-scroll" style="padding-top: 120px; min-height: 80vh;">
             <div class="container">
-                <h2>Parcours Professionnel</h2>
+                <h2 style="margin-bottom: 3rem;">Expériences Professionnelles</h2>
                 <div class="timeline">
                     <!-- Exp 1 -->
                     <div class="timeline-item">
-                        <div class="timeline-date">Juil. 2024 — Sept. 2024</div>
-                        <h3 class="timeline-role">Ingénieur Stagiaire Amélioration Continue & Digitalisation</h3>
+                        <div class="timeline-date">Juil. 2025 — Sept. 2025</div>
+                        <h3 class="timeline-role">Stage PFA – Développement Web & Systèmes d’Information</h3>
                         <span class="timeline-company">YAZAKI MOROCCO S.A (Tanger)</span>
                         <ul class="timeline-details">
-                            <li>Développement d'une application Power Apps pour la résolution de problèmes terrain.</li>
-                            <li>Intégration méthodologie TRIZ + reporting Power BI + stockage SharePoint.</li>
-                            <li>Test sur cas réels, analyse d'impact et itérations basées sur les retours utilisateurs.
+                            <li>Migration d’une plateforme interne (MDGS) Power Apps vers une solution web complète.
                             </li>
+                            <li>Stack technique : <strong>Node.js, Express.js, PostgreSQL</strong>.</li>
+                            <li>Conception SI : modélisation des processus et structuration des données.</li>
+                            <li>Optimisation des processus opérationnels et formation des techniciens.</li>
                         </ul>
                     </div>
                     <!-- Exp 2 -->
                     <div class="timeline-item">
-                        <div class="timeline-date">Fév. 2025 — Juin 2025</div>
-                        <h3 class="timeline-role">Projet Académique : App Web d’Évaluation</h3>
+                        <div class="timeline-date">Févr. 2025 — Juin 2025</div>
+                        <h3 class="timeline-role">Projet Académique – Application Web</h3>
                         <span class="timeline-company">ENSA Tanger</span>
                         <ul class="timeline-details">
-                            <li>Conception des modules d'évaluation, d'analyse et de reporting.</li>
-                            <li>Responsable CI/CD Backend : Dockerisation + GitHub Actions.</li>
-                            <li>Déploiement Cloud sur Railway et Azure, standardisation de l'infrastructure.</li>
+                            <li>Développement d’une application web d’évaluation des soft skills (analyse, reporting).
+                            </li>
+                            <li>Mise en place pipeline <strong>CI/CD</strong> : Docker, GitHub Actions.</li>
+                            <li>Coordination technique de l’infrastructure et déploiement.</li>
                         </ul>
                     </div>
                     <!-- Exp 3 -->
                     <div class="timeline-item">
+                        <div class="timeline-date">Juil. 2024 — Sept. 2024</div>
+                        <h3 class="timeline-role">Stage d’initiation – Digitalisation & SI</h3>
+                        <span class="timeline-company">YAZAKI MOROCCO S.A (Tanger)</span>
+                        <ul class="timeline-details">
+                            <li>Conception d’une application Power Apps pour digitaliser un processus terrain.</li>
+                            <li>Recueil des besoins auprès des équipes opérationnelles.</li>
+                            <li>Tests utilisateurs et validation fonctionnelle.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: 4rem;">
+                <h2 style="margin-bottom: 3rem;">Formation Académique</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
                         <div class="timeline-date">Sept. 2024 — Aujourd’hui</div>
-                        <h3 class="timeline-role">Cycle Ingénieur Informatique</h3>
+                        <h3 class="timeline-role">Cycle Ingénieur – Génie Informatique (2e année)</h3>
                         <span class="timeline-company">ENSA Tanger</span>
                         <ul class="timeline-details">
-                            <li>Acquisition de compétences approfondies en programmation et systèmes distribués.</li>
-                            <li>Architecture logicielle, algorithmique avancée et gestion de projet agile.</li>
+                            <li>Développement logiciel et systèmes d’information.</li>
+                            <li>Candidat au Master Informatique – parcours DOSI (UBO).</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Sept. 2022 — Juil. 2024</div>
+                        <h3 class="timeline-role">Cycle Préparatoire Intégré</h3>
+                        <span class="timeline-company">ENSA Tanger</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021 — 2022</div>
+                        <h3 class="timeline-role">Baccalauréat International (Sciences Physiques)</h3>
+                        <span class="timeline-company">Lycée Ibn Batouta, Tanger</span>
+                        <ul class="timeline-details">
+                            <li>Option français. Mention : Très bien.</li>
                         </ul>
                     </div>
                 </div>
@@ -148,8 +174,10 @@
         <i class="fa-solid fa-arrow-up progress-arrow"></i>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="js/background.js"></script>
     <!-- JS Script -->
-    <script src="js/script.obfuscated.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

@@ -16,13 +16,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- SECURITY: Hide Content by Default -->
-    <style>
-        html {
-            display: none;
-        }
-    </style>
-
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -93,7 +86,7 @@
         <!-- CONTACT SECTION -->
         <section id="contact" class="section-padding hidden-scroll" style="padding-top: 120px; min-height: 80vh;">
             <div class="container">
-                <h2>Me Contacter</h2>
+                <h2 class="section-title">Me Contacter</h2>
                 <div class="contact-wrapper">
                     <div class="contact-info">
                         <p>N'hésitez pas à me contacter pour discuter de vos projets ou d'opportunités de collaboration.
@@ -109,16 +102,39 @@
                             </div>
                         </div>
 
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <strong>Email</strong>
+                                <br>
+                                <a
+                                    href="mailto:mossabbenabdellah7@gmail.com?subject=Prise%20de%20contact%20-%20Portfolio&body=Bonjour%20Mosab%2C%0D%0A%0D%0AJe%20vous%20contacte%20suite%20%C3%A0%20la%20visite%20de%20votre%20portfolio.%0D%0A%0D%0AJe%20souhaiterais%20échanger%20avec%20vous%20concernant%20une%20opportunité.%0D%0A%0D%0ACordialement.">mossabbenabdellah7@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <strong>Téléphone</strong>
+                                <br>
+                                <a href="tel:+212602504704">+212 602 504 704</a>
+                            </div>
+                        </div>
+
                         <div class="contact-actions">
-                            <a class="icon-btn" id="gmailLink" href="#" aria-label="Envoyer un email" title="Email">
-                                <img src="assets/icons/gmail.svg" alt="" width="22" height="22" loading="lazy"
+                            <a class="icon-btn" id="gmailLink"
+                                href="mailto:mossabbenabdellah7@gmail.com?subject=Prise%20de%20contact%20-%20Portfolio&body=Bonjour%20Mosab%2C%0D%0A%0D%0AJe%20vous%20contacte%20suite%20%C3%A0%20la%20visite%20de%20votre%20portfolio.%0D%0A%0D%0AJe%20souhaiterais%20échanger%20avec%20vous%20concernant%20une%20opportunité.%0D%0A%0D%0ACordialement."
+                                aria-label="Envoyer un email" title="Email">
+                                <img src="assets/icons/gmail.svg" alt="Email Icon" width="22" height="22" loading="lazy"
                                     decoding="async">
                             </a>
 
-                            <a class="icon-btn" id="waLink" href="#" target="_blank" rel="noopener noreferrer"
-                                aria-label="Discuter sur WhatsApp" title="WhatsApp">
-                                <img src="assets/icons/whatsapp.svg" alt="" width="22" height="22" loading="lazy"
-                                    decoding="async">
+                            <a class="icon-btn" id="waLink"
+                                href="https://wa.me/212602504704?text=Bonjour%20Mosab%2C%20j%27ai%20visit%C3%A9%20votre%20portfolio%20et%20je%20souhaiterais%20discuter%20d%27une%20opportunit%C3%A9%20professionnelle%20avec%20vous."
+                                target="_blank" rel="noopener noreferrer" aria-label="Discuter sur WhatsApp"
+                                title="WhatsApp">
+                                <img src="assets/icons/whatsapp.svg" alt="WhatsApp Icon" width="22" height="22"
+                                    loading="lazy" decoding="async">
                             </a>
                         </div>
 
@@ -170,8 +186,10 @@
         <i class="fa-solid fa-arrow-up progress-arrow"></i>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="js/background.js"></script>
     <!-- JS Script -->
-    <script src="js/script.obfuscated.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

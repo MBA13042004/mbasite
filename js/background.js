@@ -40,6 +40,7 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     // Style for Background
+    renderer.domElement.id = 'bg-canvas'; // ID for CSS targeting
     renderer.domElement.style.position = 'fixed';
     renderer.domElement.style.top = '0';
     renderer.domElement.style.left = '0';
@@ -117,6 +118,8 @@ function init() {
     animate();
 }
 
+// Theme Variables - NONE (Dark Mode Only)
+
 function animate() {
     cloudParticles.forEach((p) => {
         p.rotation.z -= 0.002;
@@ -131,25 +134,8 @@ function animate() {
                 positions[i] = 200; // Reset height
             }
         }
-        rainGeo.attributes.position.needsUpdate = true; // IMPORTANT
+        rainGeo.attributes.position.needsUpdate = true;
     }
-
-    // Previous code had: rain.position.z -= 0.222; 
-    // But rain is a Points object. Moving the whole object is one way, animating vertices is another.
-    // The user code seems to try both or is slightly confused.
-    // "rainGeo.verticesNeedUpdate = true;" suggest old Three.js
-    // "rainGeo.attributes.size..."
-    // User code:
-    /*
-    rainGeo.attributes.size.array.forEach((r, i) => {
-      r += 0.3;
-    });
-    rainGeo.verticesNeedUpdate = true; // This property is deprecated in BufferGeometry
-    rain.position.z -= 0.222;
-    */
-
-    // I will strictly attempt to make it work.
-    // rain.position.z -= 0.222; is valid for the whole group.
 
     rain.position.z -= 0.222;
     if (rain.position.z < -200) {

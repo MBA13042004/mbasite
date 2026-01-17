@@ -17,13 +17,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- SECURITY: Hide Content by Default -->
-    <style>
-        html {
-            display: none;
-        }
-    </style>
-
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -83,7 +78,7 @@
     <!-- MOBILE MENU OVERLAY -->
     <div class="mobile-nav-overlay">
         <a href="about.html" class="nav-link">À propos</a>
-        <a href="skills.html" class="nav-link">Compétences</a>
+        <a href="skills.html" class="nav-link active">Compétences</a>
         <a href="services.html" class="nav-link">Services</a>
         <a href="projects.html" class="nav-link">Projets</a>
         <a href="experience.html" class="nav-link">Expérience</a>
@@ -99,56 +94,66 @@
                     <!-- Cat 1 -->
                     <div class="skill-card">
                         <img class="skill-icon-img" src="assets/skills/web.svg" alt="Langages & Web">
-                        <h3>Langages & Web</h3>
+                        <h3>Dév. Logiciel & Web</h3>
                         <div class="skill-tags">
-                            <span class="tag">HTML5</span>
-                            <span class="tag">CSS3</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">C/C++</span>
                             <span class="tag">Java</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Node.js / Express</span>
+                            <span class="tag">JavaFX</span>
+                            <span class="tag">HTML/CSS</span>
                         </div>
                     </div>
-                    <!-- Cat 2 -->
+
+                    <!-- Cat 2 (Conception moved up/new) -->
                     <div class="skill-card">
-                        <img class="skill-icon-img" src="assets/skills/backend.svg" alt="Back-end">
-                        <h3>Back-end</h3>
+                        <!-- Reuse backend icon or generic -->
+                        <div style="width:56px; height:56px; margin-bottom:1rem; display:flex; align-items:center;">
+                            <i class="fas fa-project-diagram" style="font-size: 40px; color: var(--primary);"></i>
+                        </div>
+                        <h3>Conception & Méthodes</h3>
                         <div class="skill-tags">
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Express.js</span>
-                            <span class="tag">REST API</span>
+                            <span class="tag">UML</span>
+                            <span class="tag">Merise (MCD/MLD)</span>
+                            <span class="tag">Design Patterns</span>
+                            <span class="tag">Agile (Scrum)</span>
+                            <span class="tag">Git</span>
                         </div>
                     </div>
+
                     <!-- Cat 3 -->
                     <div class="skill-card">
                         <img class="skill-icon-img" src="assets/skills/data.svg" alt="Data & DB">
-                        <h3>Data & DB</h3>
+                        <h3>Bases de Données</h3>
                         <div class="skill-tags">
-                            <span class="tag">SQL</span>
-                            <span class="tag">PL/SQL</span>
-                            <span class="tag">Relational DB</span>
+                            <span class="tag">Oracle (SQL/PLSQL)</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">Optimisation</span>
+                            <span class="tag">Admin DB</span>
                         </div>
                     </div>
+
                     <!-- Cat 4 -->
                     <div class="skill-card">
                         <img class="skill-icon-img" src="assets/skills/devops.svg" alt="DevOps & Cloud">
                         <h3>DevOps & Cloud</h3>
                         <div class="skill-tags">
                             <span class="tag">Docker</span>
-                            <span class="tag">Docker Compose</span>
+                            <span class="tag">CI/CD</span>
                             <span class="tag">GitHub Actions</span>
-                            <span class="tag">Railway</span>
-                            <span class="tag">Azure</span>
+                            <span class="tag">GitLab CI/CD</span>
+                            <span class="tag">Railway/AWS</span>
                         </div>
                     </div>
+
                     <!-- Cat 5 -->
                     <div class="skill-card">
                         <img class="skill-icon-img" src="assets/skills/power.svg" alt="Outils & Power Platform">
-                        <h3>Outils & Power Platform</h3>
+                        <h3>Power Platform & Outils</h3>
                         <div class="skill-tags">
-                            <span class="tag">Power BI</span>
                             <span class="tag">Power Apps</span>
+                            <span class="tag">Power BI</span>
                             <span class="tag">SharePoint</span>
-                            <span class="tag">Office 365</span>
+                            <span class="tag">VS Code</span>
                         </div>
                     </div>
                 </div>
@@ -171,8 +176,10 @@
         <i class="fa-solid fa-arrow-up progress-arrow"></i>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="js/background.js"></script>
     <!-- JS Script -->
-    <script src="js/script.obfuscated.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
