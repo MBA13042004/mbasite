@@ -16,8 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Remove on window load (all assets loaded)
     window.addEventListener('load', removePreloader);
 
-    // Fallback timeout (3 second safety)
-    setTimeout(removePreloader, 3000);
+    // Fallback timeout (2 second safety - faster load)
+    setTimeout(removePreloader, 2000);
+
+    // Set current year dynamically
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+
 
     // 2. THEME SWITCHER (Auto-Detect + Manual Override)
     const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
