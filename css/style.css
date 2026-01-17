@@ -48,9 +48,10 @@
 /* Dark Theme Data Attribute OR System Preference */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg-body: #0f172a;
-    --bg-surface: #1e293b;
-    --bg-glass: rgba(15, 23, 42, 0.85);
+    /* Updated to Deep Night Blue (AuthKit/Snoweb inspired) */
+    --bg-body: #02040a;
+    --bg-surface: #0a101f;
+    --bg-glass: rgba(2, 4, 10, 0.85);
 
     --text-main: #f3f4f6;
     --text-muted: #94a3b8;
@@ -60,7 +61,9 @@
     --primary-hover: #60a5fa;
     --accent: #22d3ee;
 
-    --border-light: #334155;
+    /* More subtle borders for dark mode */
+    --border-light: rgba(255, 255, 255, 0.08);
+
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
@@ -68,9 +71,10 @@
 }
 
 [data-theme="dark"] {
-  --bg-body: #0f172a;
-  --bg-surface: #1e293b;
-  --bg-glass: rgba(15, 23, 42, 0.85);
+  /* Updated to Deep Night Blue (AuthKit/Snoweb inspired) */
+  --bg-body: #02040a;
+  --bg-surface: #0a101f;
+  --bg-glass: rgba(2, 4, 10, 0.85);
 
   --text-main: #f3f4f6;
   --text-muted: #94a3b8;
@@ -80,10 +84,48 @@
   --primary-hover: #60a5fa;
   --accent: #22d3ee;
 
-  --border-light: #334155;
+  /* More subtle borders */
+  --border-light: rgba(255, 255, 255, 0.08);
+
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+/* 
+   DARK MODE BACKGROUND: Snoweb Style (100% Match)
+   Clean Deep Navy + Soft Depth + No Grid + Bottom Wave
+*/
+/*
+   DARK MODE BACKGROUND: Snoweb Reference (Final)
+   Base: Deepest Navy. Wave: Smooth Dark Hill.
+*/
+/*
+   DARK MODE BACKGROUND: Snoweb Reference (Final)
+   Base: Deepest Navy. Wave: Smooth Dark Hill.
+   + RIGHT SIDE ARC (Snoweb Layout)
+*/
+[data-theme="dark"] body {
+  background-color: #020617;
+  /* Slate 950 */
+
+  background-image:
+    /* 1. Large Dark Arc (Restricted Width) to avoid overlap with tags */
+    radial-gradient(ellipse 60% 100% at 100% 50%, rgba(2, 6, 23, 0.8) 0%, transparent 70%),
+
+    /* 2. Very subtle accent glow (top center) */
+    radial-gradient(circle at 50% -20%, rgba(56, 189, 248, 0.1) 0%, transparent 60%);
+
+  background-size: 100% 100%, 100% 100%;
+  background-attachment: fixed;
+}
+
+
+
+
+/* Hide Heavy Legacy Background Animation in Dark Mode */
+[data-theme="dark"] #bg-canvas {
+  display: none !important;
 }
 
 /* =========================================
@@ -159,10 +201,10 @@ input:checked+.slider:before {
   background-size: 16px;
 }
 
-/* 
+/*
 ========================================================================
    2. RESET & BASE STYLES
-======================================================================== 
+========================================================================
 */
 *,
 *::before,
@@ -189,15 +231,15 @@ body {
   /* Prevent horizontal scroll */
 }
 
-/* 
-   LIGHT MODE: TEXTURED CONCRETE / GRUNGE 
+/*
+   LIGHT MODE: TEXTURED CONCRETE / GRUNGE
    Industrial aesthetic with vertical scratches and subtle shimmer.
 */
 [data-theme="light"] body {
   background-color: #e5e5e5;
   /* Concrete base */
 
-  /* 
+  /*
      Layers:
      1. Digital Noise (Grain)
      2. Vertical Scratches (Repeated gradients)
@@ -397,10 +439,10 @@ p {
   margin-bottom: 1.5rem;
 }
 
-/* 
+/*
 ========================================================================
    3. HEADER & NAVIGATION
-======================================================================== 
+========================================================================
 */
 header {
   position: fixed;
@@ -568,10 +610,10 @@ header {
   color: var(--text-main);
 }
 
-/* 
+/*
 ========================================================================
    4. SECTIONS (HERO, ABOUT, SKILLS, ETC)
-======================================================================== 
+========================================================================
 */
 
 /* --- HERO --- */
@@ -584,7 +626,41 @@ header {
   position: relative;
   overflow: hidden;
   /* Prevent blob spill */
+  position: relative;
 }
+
+/* SNOWEB STYLE WAVE (Dark Mode Only)
+   Smooth "Hill" Silhouette at the bottom of the Hero.
+*/
+[data-theme="dark"] #top::after {
+  display: none !important;
+  /* Force kill the wave to ensure 100% clean background */
+}
+
+/* 
+   PATCH OVERLAY for Credibility Tags (Safe Fix)
+   Ensures the background behind tags is 100% Uniform Navy (#020617)
+*/
+[data-theme="dark"] .credibility-line {
+  position: relative;
+  z-index: 5;
+}
+
+[data-theme="dark"] .credibility-line::before {
+  content: "";
+  position: absolute;
+  inset: -40px -40vw -40px -40px;
+  /* Cover wide area */
+  background: #020617;
+  /* Exact base color */
+  z-index: -1;
+  box-shadow: 0 0 30px 30px #020617;
+  /* Feathered blend */
+  pointer-events: none;
+}
+
+
+
 
 /* New Hero Grid Container */
 .hero-container {
@@ -592,7 +668,12 @@ header {
   grid-template-columns: 1fr;
   gap: 3rem;
   align-items: center;
+  position: relative;
+  /* Ensure stacking context */
+  z-index: 10;
+  /* Ensure above background elements */
 }
+
 
 /* Default Mobile: Centered */
 .hero-content-wrapper {
@@ -607,6 +688,67 @@ header {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-size: 0.875rem;
+}
+
+
+
+/* --- HERO V2 TYPOGRAPHY (Pro & Compact) --- */
+
+/* 1. Eyebrow */
+.hero-intro {
+  /* Existing class, just ensuring it's not too big */
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+/* 2. Main Title (H1) - Compact & Responsive */
+.hero-title-v2 {
+  font-size: clamp(2.0rem, 3.2vw, 3.0rem);
+  /* Max 3rem instead of 4rem+ */
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--text-main);
+}
+
+/* 3. Accent Line - Pro Style */
+.hero-accent-v2 {
+  display: block;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 600;
+  color: var(--text-main);
+  /* Default light mode color */
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.01em;
+  opacity: 0.95;
+}
+
+[data-theme="dark"] .hero-accent-v2 {
+  color: var(--accent);
+  /* Cyan in dark mode */
+}
+
+/* 4. Description Paragraph - Controlled Width */
+.hero-desc-v2 {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 2.25rem;
+  max-width: 55ch;
+  /* Optimal reading length */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Desktop Alignment Override */
+@media (min-width: 992px) {
+  .hero-desc-v2 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.1rem;
+  }
 }
 
 .hero-title span {
@@ -1228,10 +1370,10 @@ footer {
   transform: translateY(0);
 }
 
-/* 
+/*
 ========================================================================
    5. SYSTEM DARK MODE OVERRIDES (For Auto Mode)
-======================================================================== 
+========================================================================
    Mirrors [data-theme="dark"] styles for specific elements
    Applies when system is Dark AND we are NOT forcing Light
 */
@@ -1257,10 +1399,10 @@ footer {
   }
 }
 
-/* 
+/*
 ========================================================================
    6. LOADER (Newton's Cradle Bulbs)
-======================================================================== 
+========================================================================
 */
 .loader-wrapper {
   position: fixed;
@@ -1369,10 +1511,10 @@ footer {
   border-color: #f3f4f6;
 }
 
-/* 
+/*
 ========================================================================
    7. NAVBAR GLOW INDICATOR
-======================================================================== 
+========================================================================
 */
 .nav-links {
   position: relative;
@@ -1402,10 +1544,10 @@ footer {
   height: 3px;
 }
 
-/* 
+/*
 ========================================================================
    8. PREMIUM CARD HOVER EFFECTS (Skills, Projects, Services)
-======================================================================== 
+========================================================================
 */
 .skill-card,
 .project-card,
@@ -1449,10 +1591,10 @@ footer {
   border-color: #22d3ee;
 }
 
-/* 
+/*
 ========================================================================
    11. MODERN SLIDING NAVBAR (Neon Glow)
-======================================================================== 
+========================================================================
 */
 
 /* Main Navigation Context */
@@ -1493,10 +1635,10 @@ footer {
   z-index: 10;
 }
 
-/* 
+/*
 ========================================================================
    12. SCROLL PROGRESS BUTTON
-======================================================================== 
+========================================================================
 */
 
 .progress-wrap {
@@ -1548,12 +1690,72 @@ footer {
   /* Slight jump effect */
 }
 
+/* 
+   DARK MODE HERO IMAGE OVERRIDE (Snoweb Style)
+   Transform "Blob" -> "Isometric Floating 3D Block"
+*/
+/* 
+   DARK MODE HERO PHOTO: 
+   Identical to Light Mode (Blob + Animation).
+   Only Z-Index is adjusted to sit above background patches.
+*/
+[data-theme="dark"] .hero-img-blob {
+  position: relative;
+  z-index: 25;
+}
+
+
+
+/* DARK MODE BUTTONS (Snoweb Style) */
+[data-theme="dark"] .hero-btns {
+  position: relative;
+  z-index: 20;
+  /* Ensure above all patches and backgrounds */
+}
+
+[data-theme="dark"] .hero-btns .btn {
+  border-radius: 6px;
+  /* Snoweb specific radius */
+  font-weight: 600;
+  padding: 0.8rem 1.8rem;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="dark"] .hero-btns .btn-primary {
+  background-color: var(--primary);
+  /* Keep brand blue */
+  border: 1px solid var(--primary);
+  color: #fff;
+}
+
+[data-theme="dark"] .hero-btns .btn-outline {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+[data-theme="dark"] .hero-btns .btn-outline:hover {
+  border-color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* DARK MODE TYPOGRAPHY OVERRIDES */
+[data-theme="dark"] .hero-title-v2 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .hero-accent-v2 {
+  color: var(--accent);
+  /* Ensure blue pop */
+}
+
+
 /* Light Mode Specific tweaks if needed */
 [data-theme="light"] .progress-wrap {
   box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.05);
 }
 
-/* 
+/*
 ========================================================================
    13. CUSTOM LOGO PRELOADER
 ======================================================================== 
