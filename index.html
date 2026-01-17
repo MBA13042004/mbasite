@@ -23,6 +23,21 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo-mba-dark.png">
+
+    <!-- Emergency preloader remover (inline for reliability) -->
+    <script>
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                setTimeout(function () {
+                    preloader.style.opacity = '0';
+                    setTimeout(function () {
+                        preloader.style.display = 'none';
+                    }, 500);
+                }, 100);
+            }
+        });
+    </script>
 </head>
 
 <body>
