@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="light dark">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page non trouvée | Mosab Ben Abdellah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/logo-mba-dark.png">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            flex-direction: column;
+            padding: 2rem;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn-home {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2px);
+            background-color: var(--primary-hover);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>404</h1>
+    <p>Oups ! La page que vous recherchez semble avoir disparu ou n'a jamais existé.</p>
+    <a href="index.html" class="btn-home">Retour à l'accueil</a>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

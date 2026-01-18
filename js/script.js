@@ -123,6 +123,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 4. NAVIGATION ACTIVE STATE (Multi-page Highlight)
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const navItems = document.querySelectorAll('.nav-link');
+
+    navItems.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        }
+    });
+
     // --- SCROLL PROGRESS (High Performance & Robust) ---
     const progressWrap = document.getElementById('progressWrap');
     if (progressWrap) {
@@ -221,4 +232,203 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn("Three.js background failed to init:", e);
         }
     }
+
+    /*
+    ========================================================================
+       8. SMART PROMPT (UX TOAST) [DEBUG MODE]
+    ========================================================================
+    */
+    class SmartPrompt {
+        constructor() {
+            this.timer = null;
+            this.isShown = false; // Explicit init
+            this.idleTime = 10000; // 10s
+            this.currentPath = window.location.pathname.split('/').pop() || 'index.html';
+            if (this.currentPath === '') this.currentPath = 'index.html';
+
+            // Normalize path for clean keys
+            this.routeKey = this.currentPath.replace('.html', '');
+            if (this.routeKey === 'index') this.routeKey = 'home';
+
+            console.log('[SmartPrompt] Init on route:', this.routeKey);
+
+            // Route Mapping
+            this.routes = {
+                'home': {
+                    nextUrl: 'about.html',
+                    title: 'Découvrir le profil',
+                    text: 'Souhaitez-vous consulter la section À propos ?',
+                    cta: 'Aller à À propos'
+                },
+                'index': { // Alternate for home
+                    nextUrl: 'about.html',
+                    title: 'Découvrir le profil',
+                    text: 'Souhaitez-vous consulter la section À propos ?',
+                    cta: 'Aller à À propos'
+                },
+                'about': {
+                    nextUrl: 'skills.html',
+                    title: 'Aller plus loin',
+                    text: 'Souhaitez-vous voir mes compétences ?',
+                    cta: 'Voir Compétences'
+                },
+                'skills': {
+                    nextUrl: 'services.html',
+                    title: 'Continuer la visite',
+                    text: 'Souhaitez-vous découvrir mes services ?',
+                    cta: 'Voir Services'
+                },
+                'services': {
+                    nextUrl: 'projects.html',
+                    title: 'Explorer les réalisations',
+                    text: 'Souhaitez-vous consulter mes projets ?',
+                    cta: 'Voir Projets'
+                },
+                'projects': {
+                    nextUrl: 'experience.html',
+                    title: 'Parcours',
+                    text: 'Souhaitez-vous voir mon expérience ?',
+                    cta: 'Voir Expérience'
+                },
+                'experience': {
+                    nextUrl: 'contact.html',
+                    title: 'Prendre contact',
+                    text: 'Souhaitez-vous accéder à la section Contact ?',
+                    cta: 'Voir Contact'
+                },
+                'contact': {
+                    nextUrl: 'index.html',
+                    title: 'Merci de votre visite',
+                    text: 'Souhaitez-vous revenir à l’accueil ?',
+                    cta: 'Retour Accueil'
+                }
+            };
+        }
+
+        init() {
+            const pageData = this.routes[this.routeKey];
+            if (!pageData) {
+                console.log('[SmartPrompt] No data for this route.');
+                return;
+            }
+
+            // Check Cooldown (24h)
+            const dismissedAt = localStorage.getItem(`uxTourDismissed:${this.routeKey}`);
+            if (dismissedAt) {
+                const elapsed = Date.now() - parseInt(dismissedAt, 10);
+                if (elapsed < 24 * 60 * 60 * 1000) {
+                    console.log('[SmartPrompt] Cooldown active. Elapsed:', elapsed);
+                    return; // Still in cooldown
+                }
+            }
+
+            // Check Session Shown
+            if (sessionStorage.getItem(`uxTourShown:${this.routeKey}`)) {
+                console.log('[SmartPrompt] Already shown in this session.');
+                return;
+            }
+
+            // Start Timer (Strict 10s after load)
+            this.startTimer();
+        }
+
+        startTimer() {
+            if (this.isShown) return;
+            console.log(`[SmartPrompt] Timer started. prompting in ${this.idleTime}ms`);
+
+            // no activity listeners, just one timeout
+            this.timer = setTimeout(() => {
+                console.log('[SmartPrompt] Timer fired!');
+                this.show();
+            }, this.idleTime);
+        }
+
+        show() {
+            if (this.isShown) return;
+            this.isShown = true;
+            console.log('[SmartPrompt] Showing toast...');
+
+            const data = this.routes[this.routeKey];
+            const html = `
+                <div class="smart-prompt" role="dialog" aria-labelledby="promptTitle" style="display:block !important; opacity:0;">
+                    <button class="smart-close" aria-label="Fermer">
+                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                    <div class="smart-content">
+                        <h4 id="promptTitle">${data.title}</h4>
+                        <p>${data.text}</p>
+                    </div>
+                    <div class="smart-actions">
+                        <button class="btn-prompt-secondary">Plus tard</button>
+                        <button class="btn-prompt-primary">${data.cta}</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', html);
+
+            // Bind Events & Animate
+            const prompt = document.querySelector('.smart-prompt');
+            const btnClose = prompt.querySelector('.smart-close');
+            const btnSecondary = prompt.querySelector('.btn-prompt-secondary');
+            const btnPrimary = prompt.querySelector('.btn-prompt-primary');
+
+            const removeOpenClass = () => {
+                document.body.classList.remove('ux-toast-open');
+                document.body.style.removeProperty('--ux-toast-height');
+            };
+
+            const dismiss = () => {
+                console.log('[SmartPrompt] Dismissed');
+                prompt.classList.add('hide');
+                prompt.classList.remove('visible');
+                removeOpenClass(); // Reset UI overlap logic
+                localStorage.setItem(`uxTourDismissed:${this.routeKey}`, Date.now().toString());
+                setTimeout(() => prompt.remove(), 400);
+            };
+
+            const navigate = () => {
+                console.log('[SmartPrompt] Navigating to', data.nextUrl);
+                removeOpenClass(); // Reset UI overlap logic
+                sessionStorage.setItem(`uxTourShown:${this.routeKey}`, 'true');
+                window.location.href = data.nextUrl;
+            };
+
+            btnClose.addEventListener('click', dismiss);
+            btnSecondary.addEventListener('click', dismiss);
+            btnPrimary.addEventListener('click', navigate);
+
+            // Animate In (Force Layout Reflow)
+            requestAnimationFrame(() => {
+                prompt.offsetHeight; // force reflow
+                prompt.style.opacity = '1'; // Force override inline
+                prompt.classList.add('visible');
+
+                // UX Overlap Fix: Measure height for ScrollTop button
+                const height = prompt.getBoundingClientRect().height;
+                document.body.style.setProperty('--ux-toast-height', `${height}px`);
+                document.body.classList.add('ux-toast-open');
+            });
+        }
+    }
+
+    // Init Smart Prompt (Robust check)
+    const initPrompt = () => {
+        const smartPrompt = new SmartPrompt();
+        smartPrompt.init();
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPrompt);
+    } else {
+        initPrompt();
+    }
 });
+
+// DEBUG HELPER (Console only)
+window.debugSmartPrompt = () => {
+    Object.keys(localStorage).forEach(k => { if(k.startsWith('uxTour')) localStorage.removeItem(k); });
+    Object.keys(sessionStorage).forEach(k => { if(k.startsWith('uxTour')) sessionStorage.removeItem(k); });
+    console.log('[SmartPrompt] Storage cleared. Reload to test.');
+};
+

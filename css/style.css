@@ -1,4 +1,4 @@
-/* 
+﻿/* 
 /* 
 ========================================================================
    1. VARIABLES & THEME SETUP
@@ -23,6 +23,8 @@
   --primary-hover: #1d4ed8;
   --accent: #06b6d4;
   /* Cyan */
+  --hero-subtitle-color: #0891b2;
+  /* Darker cyan for hero subtitle (better contrast on light bg) */
 
   --border-light: #e5e7eb;
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -83,6 +85,8 @@
   --primary: #3b82f6;
   --primary-hover: #60a5fa;
   --accent: #22d3ee;
+  --hero-subtitle-color: #22d3ee;
+  /* Lighter cyan for hero subtitle in dark mode */
 
   /* More subtle borders */
   --border-light: rgba(255, 255, 255, 0.08);
@@ -254,7 +258,7 @@ body {
   background-attachment: fixed;
 }
 
-/* SHEEN ANIMATION (Reflet Lumière) */
+/* SHEEN ANIMATION (Reflet LumiÃ¨re) */
 [data-theme="light"] body::before {
   content: '';
   position: fixed;
@@ -718,16 +722,11 @@ header {
   display: block;
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 600;
-  color: var(--text-main);
-  /* Default light mode color */
+  color: var(--hero-subtitle-color);
+  /* Dedicated variable: darker in light, lighter in dark */
   margin-bottom: 1.5rem;
   letter-spacing: 0.01em;
   opacity: 0.95;
-}
-
-[data-theme="dark"] .hero-accent-v2 {
-  color: var(--accent);
-  /* Cyan in dark mode */
 }
 
 /* 4. Description Paragraph - Controlled Width */
@@ -1138,7 +1137,8 @@ header {
 }
 
 .timeline-details li::before {
-  content: '▹';
+  content: '\25B8';
+  /* Triangle right (safe unicode) */
   position: absolute;
   left: 0;
   color: var(--accent);
@@ -1277,6 +1277,16 @@ header {
 .form-textarea {
   resize: vertical;
   min-height: 120px;
+}
+
+.contact-form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.contact-form-actions .btn {
+  min-width: 200px;
 }
 
 /* Contact Links (Deprecated text links removed, kept for reference if needed) */
@@ -1869,4 +1879,518 @@ footer {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* 
+   ========================================================================
+      SMART PROMPT (UX Toast)
+   ========================================================================
+*/
+.smart-prompt {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 340px;
+  max-width: 90vw;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 1.5rem;
+  z-index: 9999;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  /* Invisible initially */
+}
+
+.smart-prompt.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.smart-prompt.hide {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.smart-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.smart-close:hover {
+  color: var(--text-main);
+  background-color: var(--bg-surface);
+}
+
+.smart-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--text-main);
+  padding-right: 20px;
+}
+
+.smart-content p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.smart-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-prompt-primary,
+.btn-prompt-secondary {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btn-prompt-primary {
+  background-color: var(--primary);
+  color: #fff;
+  border: 1px solid var(--primary);
+}
+
+.btn-prompt-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-prompt-secondary {
+  background-color: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-light);
+}
+
+.btn-prompt-secondary:hover {
+  border-color: var(--text-muted);
+  color: var(--text-main);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .smart-prompt {
+    bottom: 16px;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, 20px);
+    /* Center X, Offset Y */
+  }
+
+  .smart-prompt.visible {
+    transform: translate(-50%, 0);
+  }
+
+  .smart-prompt.hide {
+    transform: translate(-50%, 10px);
+  }
+}
+
+/* UX OVERLAP FIX: Move scroll button up when toast is visible */
+body.ux-toast-open .progress-wrap {
+  bottom: calc(var(--ux-toast-height, 0px) + 36px) !important;
+  /* 24px initial + 12px gap */
+  transition: bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease-out, visibility 0.5s ease-out, transform 200ms linear;
+}
+
+
+/* 
+   ========================================================================
+      UX IMPROVEMENTS (Recruiter-Proof)
+   ========================================================================
+*/
+
+/* 1. STATUS BADGE (Hero) */
+.status-container {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  /* Align left */
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s;
+}
+
+.status-badge:hover {
+  transform: translateY(-1px);
+  border-color: var(--primary);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10B981;
+  /* Emerald 500 */
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* 2. ACCESSIBILITY: Visible Focus */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.btn:focus-visible,
+a:focus-visible {
+  transition: none;
+  /* Instant feedback */
+}
+
+/* 3. PREFERS-REDUCED-MOTION */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .status-dot {
+    animation: none;
+  }
+
+  .hero-img-blob {
+    animation: none;
+  }
+
+  .smart-prompt {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* 4. NAVIGATION ACTIVE STATE */
+.nav-link.active {
+  color: var(--primary) !important;
+  position: relative;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+  border-radius: 2px;
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+
+/* CV Link (Hero) */
+.hero-cv-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.link-cv {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+  padding: 0.5rem 0;
+}
+
+.link-cv:hover {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+
+/* PREMIUM CV PILL (Recruiter-Proof) */
+.cv-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 50px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.cv-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 5px 15px rgba(var(--primary-rgb, 37, 99, 235), 0.15);
+  /* Fallback to blue if var missing */
+}
+
+.cv-pill svg {
+  color: var(--primary);
+  transition: transform 0.2s;
+}
+
+.cv-pill:hover svg {
+  transform: translateY(2px);
+  /* Down arrow cues download */
+}
+
+.cv-ext {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.05);
+  /* Very subtle badge */
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+  font-weight: 500;
+}
+
+
+
+/* Ensure wrapper aligns left with buttons */
+.hero-cv-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+/* 
+   ========================================================================
+      HERO ALIGNMENT & DARK MODE FIXES
+   ========================================================================
+*/
+
+/* 1. Hero CTA Group (Flex Wrapper) */
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
+}
+
+/* 2. Responsive Alignment */
+@media (max-width: 991px) {
+
+  /* Mobile/Tablet: Centered */
+  .hero-content-wrapper {
+    text-align: center;
+    align-items: center;
+    /* Ensures flex children center */
+  }
+
+  .status-container {
+    justify-content: center;
+    /* Center Badge */
+    width: 100%;
+    display: flex;
+  }
+
+  .hero-cta-group {
+    align-items: center;
+    /* Center Buttons + CV */
+  }
+
+  .hero-cv-wrapper {
+    display: flex;
+    /* Ensure it takes width necessary */
+    justify-content: center;
+    width: 100%;
+  }
+
+  .cv-pill {
+    width: min(100%, 300px);
+    /* Visual consistence with buttons */
+    justify-content: center;
+  }
+}
+
+@media (min-width: 992px) {
+
+  /* Desktop: Left Aligned */
+  .hero-content-wrapper {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .status-container {
+    justify-content: flex-start;
+    display: flex;
+  }
+
+  .hero-cta-group {
+    align-items: flex-start;
+  }
+
+  .hero-cv-wrapper {
+    justify-content: flex-start;
+    display: flex;
+  }
+
+  .cv-pill {
+    width: auto;
+    /* Hug content on desktop */
+  }
+}
+
+
+
+/* 3. DARK MODE CV BUTTON - DEFINITIVE 360° VISIBILITY FIX */
+/* Forces bottom border visibility using Ring + Inset Shadow strategy */
+[data-theme='dark'] .cv-pill {
+  position: relative;
+  /* Ensure z-index works */
+  z-index: 10;
+
+  /* Base Style matches "Me contacter" geometry */
+  padding: 0.75rem 1.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  /* Consistent radius */
+
+  /* A) Border Visible */
+  border: 1px solid rgba(255, 255, 255, 0.30);
+
+  /* B + C) RING EXT + INSET BOTTOM (The Fix) */
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    /* Ring externe pour contour net */
+    inset 0 -1px 0 rgba(255, 255, 255, 0.28),
+    /* Inset pour forcer le bas */
+    0 12px 28px rgba(0, 0, 0, 0.35);
+  /* Ombre portée détachée */
+
+  background: rgba(255, 255, 255, 0.08);
+  /* Fond léger demandé */
+  color: rgba(255, 255, 255, 0.92);
+  /* Texte blanc cassé haut contraste */
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* FIX PARENT CLIPPING: Ensure shadow/border is never cut */
+[data-theme="dark"] .hero-cv-wrapper {
+  overflow: visible !important;
+  padding-bottom: 20px !important;
+  /* Safety space for shadow/border */
+  margin-bottom: -20px;
+  /* Offset the padding to keep layout stable */
+  position: relative;
+  z-index: 20;
+}
+
+[data-theme="dark"] .hero-cta-group {
+  overflow: visible !important;
+}
+
+/* BLOCKERS KILLER: Remove any overlays */
+[data-theme='dark'] .cv-pill::before,
+[data-theme='dark'] .cv-pill::after {
+  content: none !important;
+}
+
+/* Icon Styling */
+[data-theme='dark'] .cv-pill svg {
+  color: rgba(255, 255, 255, 0.92);
+  opacity: 1;
+  transition: transform 0.2s;
+}
+
+/* Hover State */
+[data-theme='dark'] .cv-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+  /* Boost ring brightness on hover */
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.4),
+    0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .cv-pill:hover svg {
+  transform: translateY(2px);
+}
+
+/* Focus State */
+[data-theme='dark'] .cv-pill:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.75);
+  outline-offset: 4px;
+}
+
+/* PDF Badge */
+[data-theme='dark'] .cv-ext {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+  font-weight: 500;
 }
